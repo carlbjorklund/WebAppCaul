@@ -19,13 +19,13 @@ namespace WebAppCa.Models
         [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}")]
-        public DateTime StartTime { get; set; }
+        public System.TimeSpan StartTime { get; set; }
 
 
         [Display(Name = "End Time")]
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}")]
-        public DateTime EndTime { get; set; }
+        public System.TimeSpan EndTime { get; set; }
         public int Sorting { get; set; }
        
         public  int ChannelId { get; set; }

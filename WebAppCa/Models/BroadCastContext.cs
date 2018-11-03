@@ -13,6 +13,10 @@ namespace WebAppCa.Models
 {
     public class BroadCastContext : DbContext
     {
+        public BroadCastContext()
+        {
+        }
+
         public BroadCastContext(DbContextOptions<BroadCastContext> options)
             : base(options)
         { }
