@@ -20,8 +20,9 @@ namespace WebAppCa.Controllers
 
         // GET: Schedules
         public async Task<IActionResult> Index()
-        { 
-            return View(await _context.Schedules.ToListAsync());
+        {
+            var broadCastContext = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme);
+            return View(await broadCastContext.ToListAsync());
         }
 
         // GET: Schedules/Details/5
@@ -33,6 +34,8 @@ namespace WebAppCa.Controllers
             }
 
             var schedule = await _context.Schedules
+                .Include(s => s.Channel)
+                .Include(s => s.Programme)
                 .FirstOrDefaultAsync(m => m.ScheduleId == id);
             if (schedule == null)
             {
@@ -45,6 +48,8 @@ namespace WebAppCa.Controllers
         // GET: Schedules/Create
         public IActionResult Create()
         {
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId");
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId");
             return View();
         }
 
@@ -61,6 +66,8 @@ namespace WebAppCa.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId", schedule.ChannelId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId", schedule.ProgrammeId);
             return View(schedule);
         }
 
@@ -77,6 +84,8 @@ namespace WebAppCa.Controllers
             {
                 return NotFound();
             }
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId", schedule.ChannelId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId", schedule.ProgrammeId);
             return View(schedule);
         }
 
@@ -112,6 +121,8 @@ namespace WebAppCa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId", schedule.ChannelId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId", schedule.ProgrammeId);
             return View(schedule);
         }
 
@@ -124,6 +135,8 @@ namespace WebAppCa.Controllers
             }
 
             var schedule = await _context.Schedules
+                .Include(s => s.Channel)
+                .Include(s => s.Programme)
                 .FirstOrDefaultAsync(m => m.ScheduleId == id);
             if (schedule == null)
             {

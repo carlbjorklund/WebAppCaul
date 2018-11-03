@@ -27,7 +27,10 @@ namespace WebAppCa.Models
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}")]
         public System.TimeSpan EndTime { get; set; }
         public int Sorting { get; set; }
-       
+
+        public Channel Channel { get; set; }
+        public Programme Programme { get; set; }
+
         public  int ChannelId { get; set; }
         public int ProgrammeId { get; set; }
 

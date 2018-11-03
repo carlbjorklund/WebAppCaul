@@ -18,19 +18,19 @@ namespace WebAppCa.Models
 
 
 
-        public static List<ScheduleViewModel> GetAllSchedules()
-        {
-            // BroadCastContext context = new BroadCastContext();
-            //var Schedules = context.Database.ExecuteSqlCommand("SELECT Vardas as FirstName, Pavarde as LastName FROM ZAIDEJAS")
-            //        .ToList<ScheduleViewModel>();
+        //public static List<ScheduleViewModel> GetAllSchedules()
+        //{
+        //    // BroadCastContext context = new BroadCastContext();
+        //    //var Schedules = context.Database.ExecuteSqlCommand("SELECT Vardas as FirstName, Pavarde as LastName FROM ZAIDEJAS")
+        //    //        .ToList<ScheduleViewModel>();
 
 
-            //using (var Context = new BroadCastContext())
-            //    var schedules = Context.Programmes
-            //        .Include(p=>p.pr)
-            ////        .Include(c=>c.c)
+        //    //using (var Context = new BroadCastContext())
+        //    //    var schedules = Context.Programmes
+        //    //        .Include(p=>p.pr)
+        //    ////        .Include(c=>c.c)
 
-            return schedules;
-        }
+        //    return schedules;
+        //}
     }
 }

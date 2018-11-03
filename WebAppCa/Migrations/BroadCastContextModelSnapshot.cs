@@ -84,7 +84,7 @@ namespace WebAppCa.Migrations
 
                     b.Property<int>("ChannelId");
 
-                    b.Property<DateTime>("EndTime");
+                    b.Property<TimeSpan>("EndTime");
 
                     b.Property<string>("Image");
 
@@ -92,7 +92,7 @@ namespace WebAppCa.Migrations
 
                     b.Property<int>("Sorting");
 
-                    b.Property<DateTime>("StartTime");
+                    b.Property<TimeSpan>("StartTime");
 
                     b.HasKey("ScheduleId");
 
@@ -112,12 +112,12 @@ namespace WebAppCa.Migrations
 
             modelBuilder.Entity("WebAppCa.Models.Schedule", b =>
                 {
-                    b.HasOne("WebAppCa.Models.Channel")
+                    b.HasOne("WebAppCa.Models.Channel", "Channel")
                         .WithMany("Schedules")
                         .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("WebAppCa.Models.Programme")
+                    b.HasOne("WebAppCa.Models.Programme", "Programme")
                         .WithMany("Schedules")
                         .HasForeignKey("ProgrammeId")
                         .OnDelete(DeleteBehavior.Cascade);

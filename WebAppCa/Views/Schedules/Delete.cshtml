@@ -41,6 +41,18 @@
         <dd>
             @Html.DisplayFor(model => model.Sorting)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Channel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Channel.ChannelId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Programme)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Programme.ProgrammeId)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
