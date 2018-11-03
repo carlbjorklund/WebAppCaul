@@ -1,0 +1,185 @@
+/* DEFAULT STYLES */
+
+strong,
+b {
+    font-weight: 700;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+p {
+    font-size: 16px;
+    line-height: 23px;
+    margin-bottom: 20px;
+}
+
+/* GENERAL STYLES */
+
+.btn,
+.btn:hover {
+    color: white;
+}
+
+.blockquote-footer{
+    color: grey;
+}
+
+.jumbotron {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fccf1b+0,5d29a9+69 */
+    background: #fccf1b;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #fccf1b 0%, #5d29a9 69%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #fccf1b 0%, #5d29a9 69%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #fccf1b 0%, #5d29a9 69%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fccf1b', endColorstr='#5d29a9', GradientType=0);
+    /* IE6-9 */
+    color: white;
+}
+
+
+
+.card{
+    justify-content: center;
+    margin-left: 175px;
+    
+}
+.v1{
+    background: #A65F00;
+    color: white;
+
+}
+
+.text-center justify-content-center{
+    
+    margin-left: 100px;
+}
+
+.tumb {
+    
+    width: 100px;
+    height: 100px;
+    padding-left: 10px
+}
+
+.city{
+    width: 500px;
+    height: 150px;
+    padding-left: 10px
+}
+
+.test{
+    padding-left: 20px;
+    padding-right: 20px;
+    width:60%;
+    justify-content: center;
+}
+
+/*footer design*/
+
+.footer-copyright p {
+    justify-content: center;
+
+}
+
+.footcontainer{
+    background: #033E6B;
+    margin: 20px;
+}
+
+.footcontainer h5{
+    text-decoration: none;
+    color: white;
+    background: #033E6B;
+    
+}
+
+.footcontainer ul li a{
+    
+    text-decoration: none;
+    color: white;
+    
+}
+
+.logo {
+    vertical-align: left;
+    width: 70px;
+    height: 70px;
+    padding-left: -10px
+}
+
+.cop{
+    background: #66A3D2;
+    color: white;
+}
+
+
+
+
+
+
+/* Responsivness Part */
+
+@media only screen and (max-width: 991px) {
+
+    h1.display-1 {
+        font-size: 35px;
+        line-height: 40px;
+        margin-top: 15px;
+    }
+    
+    .city{
+    width: 300px;
+    height: 150px;
+  
+}
+    
+    .card{
+        margin-left: 5px;
+        margin-right: 5px;}
+        
+  .test{
+  
+    width: 85%;
+    justify-content: center;
+}
+
+
+}
+
+@media only screen and (max-width: 570px) {
+    
+     h1.display-1 {
+        font-size: 30px;
+        line-height: 15px;
+        margin-top: 60px;
+    }
+    
+    width: 100%;
+    justify-content: center;
+    
+}
+@media only screen and (max-width: 360px) {
+    
+     h1.display-1 {
+        font-size: 30px;
+        line-height: 30px;
+        margin-top: 50px;
+    }
+    
+        
+    
+}
+    
+     founders city{
+    width: 300px;
+    height: 150px;
+   
+    
+}
+
