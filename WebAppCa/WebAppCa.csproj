@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181103101657_ULCAdb2018a.cs" />
+    <Compile Remove="Migrations\20181103101657_ULCAdb2018a.Designer.cs" />
+    <Compile Remove="Migrations\20181103102433_ULCAdb2018b.cs" />
+    <Compile Remove="Migrations\20181103102433_ULCAdb2018b.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
