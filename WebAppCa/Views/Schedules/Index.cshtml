@@ -75,6 +75,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Programme.Title)
             </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Programme.Category.Title)
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ScheduleId">Details</a> |
