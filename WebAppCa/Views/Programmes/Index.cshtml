@@ -5,10 +5,6 @@
 }
 
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-
 
 
 <div class="jumbotron jumbotron-fluid">
@@ -43,7 +39,7 @@
                         <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
                         <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
                         <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
-                     
+
                     </div>
                 </li>
             </ul>
@@ -54,53 +50,57 @@
     }
 
 </table>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
 
 @*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Length)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Image)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Length)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.CategoryId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ProgrammeId">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Length)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>*@
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Length)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProgrammeId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
