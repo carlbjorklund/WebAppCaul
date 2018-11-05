@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAppCa.Models
 {
-    public class ScheduleViewModel: BroadCastContext
+    public class ScheduleViewModel
     {
+        [Key]
+        public int ScheduleViewModelId { get; set; }
         public string CategoryName { get; set; }
         public int CategoryId { get; set; }
         public string Channel { get; set; }

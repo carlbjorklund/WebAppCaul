@@ -13,6 +13,38 @@ namespace WebAppCa.Controllers
     {
         private readonly BroadCastContext _context;
 
+        public ActionResult GetAwesomeResult()
+        {
+            ViewBag.CategoryId = new SelectList(_context.Categories, "CategoryId", "Title");
+            ViewBag.ChannelId = new SelectList(_context.Channels, "ChannelId", "Name");
+            ViewBag.ScheduleId = new SelectList(_context.Schedules, "ScheduleId", "AirDate");
+
+            var List = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme).Include(s => s.Programme.Category).ToList();
+
+            return View(List);
+        }
+
+        [HttpPost]
+        public ActionResult GetAwesomeResult(int CategoryId, int ChannelId, int ScheduleId)
+        {
+
+            var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme).Include(s => s.Programme.Category).ToList();
+            if (CategoryId != 0)
+            {
+                broadCastContext1 = _context.Schedules.Where(s => s.Programme.CategoryId == CategoryId).ToList();
+            }
+            if (ChannelId != 0)
+            {
+                broadCastContext1 = _context.Schedules.Where(s => s.ChannelId == ChannelId).ToList();
+            }
+            if (ScheduleId != 0)
+            {
+                broadCastContext1 = _context.Schedules.Where(s => s.ScheduleId == ScheduleId).ToList();
+            }
+
+            return View(broadCastContext1);
+        }
+
         public SchedulesController(BroadCastContext context)
         {
             _context = context;
