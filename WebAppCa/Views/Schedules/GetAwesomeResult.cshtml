@@ -7,15 +7,15 @@
     @using (Html.BeginForm())
     {
         <p>
-            @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+            @*@Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
             @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)
-            @Html.DropDownList("ScheduleId", ViewData["ScheduleId"] as IEnumerable<SelectListItem>)
+            @Html.DropDownList("ScheduleId", ViewData["ScheduleId"] as IEnumerable<SelectListItem>)*@
 
 
 
-            @*Category:@Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryId, htmlAttributes: new { @class = "form-control" })<br />
-     Channel:@Html.DropDownList("ChannelId", (SelectList)ViewBag.ChannelId, htmlAttributes: new { @class = "form-control" })<br />
-     Air date:@Html.DropDownList("ScheduleId", (SelectList)ViewBag.ScheduleId, htmlAttributes: new { @class = "form-control" })<br />*@
+            Category:@Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryId, htmlAttributes: new { @class = "form-control" })<br />
+            Channel:@Html.DropDownList("ChannelId", (SelectList)ViewBag.ChannelId, htmlAttributes: new { @class = "form-control" })<br />
+            Air date:@Html.DropDownList("ScheduleId", (SelectList)ViewBag.ScheduleId, htmlAttributes: new { @class = "form-control" })<br />
             <input type="submit" value="Filter" />
         </p>
     }
@@ -68,10 +68,10 @@
                 @Html.DisplayFor(modelItem => item.Sorting)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Channel.ChannelId)
+                @Html.DisplayFor(modelItem => item.Channel.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Programme.ProgrammeId)
+                @Html.DisplayFor(modelItem => item.Programme.Title)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ScheduleId">Edit</a> |
