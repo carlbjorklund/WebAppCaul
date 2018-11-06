@@ -26,7 +26,7 @@ namespace WebAppCa.Controllers
 
             var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
                 .Include(s => s.Programme.Category).ToList();
-
+            
 
             if (categoryId != 0)
             {
