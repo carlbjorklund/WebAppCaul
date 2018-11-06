@@ -1,29 +1,28 @@
 ﻿@model IEnumerable<WebAppCa.Models.Schedule>
 
 <<p>
-    @Html.ActionLink("Create New", "Create")
-    @using (Html.BeginForm())
-    {
-    <p>
-        @*@Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
-            @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)
-            @Html.DropDownList("ScheduleId", ViewData["ScheduleId"] as IEnumerable<SelectListItem>)*@
+    @*@Html.ActionLink("GetAwesomeResult", "Create")*@
 
 
 
-        @*Category:@Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryId, htmlAttributes: new { @class = "form-control" })<br />
-            Channel:@Html.DropDownList("ChannelId", (SelectList)ViewBag.ChannelId, htmlAttributes: new { @class = "form-control" })<br />
-            Air date:@Html.DropDownList("ScheduleId", (SelectList)ViewBag.ScheduleId, htmlAttributes: new { @class = "form-control" })<br />*@
-        <input type="submit" value="Filter" />
-    </p>
-}
-    </p>
+
+    @*Category:@Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryId, htmlAttributes: new { @class = "form-control" })<br />
+        Channel:@Html.DropDownList("ChannelId", (SelectList)ViewBag.ChannelId, htmlAttributes: new { @class = "form-control" })<br />
+        Air date:@Html.DropDownList("ScheduleId", (SelectList)ViewBag.ScheduleId, htmlAttributes: new { @class = "form-control" })<br />
+    @*<input type="submit" value="Filter" />*@
+
+    
+</p>
+    
 
     @using (Html.BeginForm("GetAwesomeResult","Schedules", FormMethod.Get ))
     {
         <p>
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
+            @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+            @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)
+            @*@Html.DropDownList("ScheduleId", ViewData["ScheduleId"] as IEnumerable<SelectListItem>)*@
+            @*Find by name: @Html.TextBox("SearchString")*@
+            <input type="submit" value="Search"/>
         </p>
     }
 
