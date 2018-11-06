@@ -28,55 +28,68 @@ namespace WebAppCa.Controllers
         //    //    //var students.Where(s => s.LastName.Contains(searchString)
         //    //    //                               || s.FirstMidName.Contains(searchString));
         //    //}
-            
+
 
         //    return View(List);
         //}
-        public ViewResult GetAwesomeResult(string searchString)
+        //public ViewResult GetAwesomeResult(string searchString)
+        //{
+        //    //ViewBag.CategoryId = new SelectList(_context.Categories, "CategoryId", "Title");
+        //    //ViewBag.ChannelId = new SelectList(_context.Channels, "ChannelId", "Name");
+        //    //ViewBag.ScheduleId = new SelectList(_context.Schedules, "ScheduleId", "AirDate");
+
+        //    //var List = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme).Include(s => s.Programme.Category).ToList();
+
+        //    //if (!String.IsNullOrEmpty(searchString))
+        //    //{
+        //    //    //List = new List<Schedule>(_context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
+        //        //    .Include(s => s.Programme.Category).ThenInclude(s=>s.Title.Contains(searchString)));
+
+        //        //List = new List<Schedule>(_context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
+        //        //    .Include(s => s.Programme.Category).Include(s => s.Programme.Category.Title.Contains(searchString)));
+
+        //        var list = _context.Schedules.Include(p => p.Programme).Include(p=>p.Programme.Category.Title.Contains(searchString));
+
+
+        //    //}
+
+
+        //    return View(list);
+        //}
+        //, int? channelId, int? scheduleId
+        public ActionResult GetAwesomeResult(int? categoryId, int? channelId)
         {
-            //ViewBag.CategoryId = new SelectList(_context.Categories, "CategoryId", "Title");
-            //ViewBag.ChannelId = new SelectList(_context.Channels, "ChannelId", "Name");
-            //ViewBag.ScheduleId = new SelectList(_context.Schedules, "ScheduleId", "AirDate");
+            var categories = _context.Categories.OrderBy(q => q.Title).ToList();
+            ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", categoryId);
 
-            //var List = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme).Include(s => s.Programme.Category).ToList();
-
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    //List = new List<Schedule>(_context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
-                //    .Include(s => s.Programme.Category).ThenInclude(s=>s.Title.Contains(searchString)));
-
-                //List = new List<Schedule>(_context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
-                //    .Include(s => s.Programme.Category).Include(s => s.Programme.Category.Title.Contains(searchString)));
-
-                var list = _context.Schedules.Include(p => p.Programme).Include(p=>p.Programme.Category.Title.Contains(searchString));
-
-         
-            //}
-           
-
-            return View(list);
-        }
-        [HttpPost]
-        public ActionResult GetAwesomeResult(int categoryId, int channelId, int scheduleId)
-        {
-
-            var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme).Include(s => s.Programme.Category).ToList();
+            var channels = _context.Channels.OrderBy(q => q.Name).ToList();
+            ViewData["ChannelId"] = new SelectList(channels,"ChannelId", "Name", channelId);
             
+            //var schedules = _context.Schedules.OrderBy(q => q.AirDate).ToList();
+            //ViewData["ScheduleId"] = new SelectList(schedules, "ChannelId", "AirDate", scheduleId);
+
+            var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
+                .Include(s => s.Programme.Category).ToList();
+
 
             if (categoryId != 0)
             {
                 broadCastContext1 = _context.Schedules.Where(s => s.Programme.CategoryId == categoryId).ToList();
             }
+
             if (channelId != 0)
             {
                 broadCastContext1 = _context.Schedules.Where(s => s.ChannelId == channelId).ToList();
             }
-            if (scheduleId != 0)
-            {
-                broadCastContext1 = _context.Schedules.Where(s => s.ScheduleId == scheduleId).ToList();
-            }
 
-            return View(broadCastContext1);
+            //if (scheduleId != 0)
+            //{
+            //    broadCastContext1 = _context.Schedules.Where(s => s.ScheduleId == scheduleId).ToList();
+            //}
+        
+    
+
+    return View(broadCastContext1);
         }
 
         public SchedulesController(BroadCastContext context)
