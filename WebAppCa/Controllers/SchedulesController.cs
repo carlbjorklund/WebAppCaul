@@ -64,9 +64,8 @@ namespace WebAppCa.Controllers
 
             var channels = _context.Channels.OrderBy(q => q.Name).ToList();
             ViewData["ChannelId"] = new SelectList(channels,"ChannelId", "Name", channelId);
-            
-            //var schedules = _context.Schedules.OrderBy(q => q.AirDate).ToList();
-            //ViewData["ScheduleId"] = new SelectList(schedules, "ChannelId", "AirDate", scheduleId);
+
+           
 
             var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
                 .Include(s => s.Programme.Category).ToList();
@@ -82,14 +81,11 @@ namespace WebAppCa.Controllers
                 broadCastContext1 = _context.Schedules.Where(s => s.ChannelId == channelId).ToList();
             }
 
-            //if (scheduleId != 0)
-            //{
-            //    broadCastContext1 = _context.Schedules.Where(s => s.ScheduleId == scheduleId).ToList();
-            //}
         
-    
 
-    return View(broadCastContext1);
+
+
+            return View(broadCastContext1);
         }
 
         public SchedulesController(BroadCastContext context)
