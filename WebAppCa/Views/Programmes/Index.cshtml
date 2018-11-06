@@ -22,23 +22,20 @@
     </div>
 </section>
 
-@*@Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)*@
-
+<div class="container">
 
 
 @using (Html.BeginForm("Index","Programmes", FormMethod.Get ))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
+        <input type="submit" value="Filter" />
+        @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
     </p>
 }
 
 
 <table class=" table table-sm">
-    <tr>
-        <th> @Html.ActionLink("Create New", "Create")</th>
-    </tr>
+   
 
     @foreach (var item in Model)
     {
@@ -61,57 +58,6 @@
     }
 
 </table>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 
 
-@*<table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Length)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Image)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Length)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.CategoryId)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ProgrammeId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
+</div>
