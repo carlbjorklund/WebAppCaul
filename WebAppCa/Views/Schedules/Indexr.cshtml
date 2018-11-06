@@ -1,32 +1,20 @@
 ﻿@model IEnumerable<WebAppCa.Models.Schedule>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-1">ULCA </h1>
-        <p class="lead">Your shows at ULCA Broadcast.</p>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">Your <strong>Schedules</strong> for a personal experience.</p>
+        </div>
     </div>
-</div>
-<section>
-    <div class="wrapper">
-        <blockquote class="blockquote text-center">
-            <p class="mb-0"> There is no time, like now.</p>
-            <footer class="blockquote-footer">Fredriko Emanero <cite title="Source Title"> Washinton Post</cite></footer>
-        </blockquote>
-    </div>
+
 </section>
-<div>
-    @using (Html.BeginForm("GetAwesomeResult", "Schedules", FormMethod.Get))
-    {
-        <p>
-            @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
-            @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)
 
-            @*Find by name: @Html.TextBox("SearchString")*@
-            <input type="submit" value="Search"/>
-        </p>
-    }
-
-
+<div class="container">
     <table class="table">
         <thead>
             <tr>
@@ -58,7 +46,7 @@
                     @Html.DisplayNameFor(model => model.Programme)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Programme.Title)
+                    Category: @* @Html.DisplayNameFor(model => model.Programme.Title)*@
                 </th>
                 <th></th>
             </tr>
@@ -109,8 +97,5 @@
 
 
     </table>
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
 
 </div>
