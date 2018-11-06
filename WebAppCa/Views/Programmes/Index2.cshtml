@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebAppCa.Models.Programme>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<
+@using (Html.BeginForm("Index", "Programmes", FormMethod.Get))
+{
+    <p>
+        @*Find by name: @Html.TextBox("SearchString")*@
+        <input type="submit" value="value" />
+
+@Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+    
+    </p>
+}
+
+
+    <table class=" table table-sm">
+    <tr>
+        <th> @Html.ActionLink("Create New", "Create")</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
+                <li data-keywords="Sports News Hour" class="media my-8">
+                    <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
+                        <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
+                        <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
+
+                    </div>
+                </li>
+            </ul>
+
+
+
+        </tr>
+    }
+
+</table>
