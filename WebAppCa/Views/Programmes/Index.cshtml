@@ -24,84 +24,42 @@
 
 <div class="container">
 
-<table class=" table table-sm">
-    <tr>
-        <th> @Html.ActionLink("Create New", "Create")</th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
-                <li data-keywords="Sports News Hour" class="media my-8">
-                    <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
-                        <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
-                        <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
+@using (Html.BeginForm("Index","Programmes", FormMethod.Get ))
+{
+    <div align="center">
 
-                    </div>
-                </li>
-            </ul>
-
-
-
-        </tr>
+        @*<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*@
+            <button type="submit" value="Search" class="btn btn-info">filter</button>
+            @Html.DropDownList("CategoryId" , ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+    </div>
     }
 
-</table>
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
+    <table class=" table table-sm">
 
 
-@*<table class="table">
-        <thead>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Image)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Length)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-                <th></th>
+                <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
+                    <li data-keywords="Sports News Hour" class="media my-8">
+                        <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
+                            <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
+                            <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
+
+                        </div>
+                    </li>
+                </ul>
+
+
+
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Image)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Length)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.CategoryId)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.ProgrammeId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ProgrammeId">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-</div>
+        }
+
+    </table>
+
+
+    </div>
