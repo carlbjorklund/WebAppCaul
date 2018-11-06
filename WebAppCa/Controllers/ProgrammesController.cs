@@ -19,76 +19,37 @@ namespace WebAppCa.Controllers
             _context = context;
         }
 
-        // GET: Programmes
+        //GET: Programmes
        
-        public async Task<IActionResult> Index()
-        {
-         
-            var broadCastContext = _context.Programmes.Include(p => p.Category);
-            return View(await broadCastContext.ToListAsync());
-        }
-
-        //public async Task<IActionResult> Edit( int? id)
-        //{
-        //    var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-        //    ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", id);
-        //    int categoryId = id.GetHashCode();
-
-        //    var programmes = _context.Programmes
-        //        .Where(c =>c.CategoryId == id)
-        //        .OrderBy(d => d.CategoryId)
-        //        .Include(d => d.Category);
-        //    //var sql = programmes.ToString();
-        //    return View(await programmes.ToListAsync());
-        //}
-
-        /// <summary>
-        /// borde funka
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        //[Route("programmes/GetCategories/{id}")]
-        ////public async Task<IActionResult> GetCategories(int? id)
-        //{
-        //    var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-        //    ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", id);
-        //    int categoryId = id.GetValueOrDefault();
-
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var programme = _context.Programmes.Where(c=>c.CategoryId==id);
-
-
-
-
-        //    return View(await programme.ToListAsync());
-        //}
-        //public ActionResult Index2(int? selectedCategory)
-        //{
-        //    //ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
-        //    var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-        //    ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", selectedCategory);
-        ////    int categoryId = selectedCategory.GetValueOrDefault();
-
-        //    var programmes = _context.Programmes
-        //        .Where(c => !selectedCategory.HasValue || c.CategoryId == categoryId)
-        //        .OrderBy(d => d.CategoryId)
-        //        .Include(d => d.Category);
-        //    //var sql = programmes.ToString();
-        //    return View(programmes.ToList());
-        //}
-
         /// <summary>
         /// funkar
         /// </summary>
-        /// <param name="selectedCategory"></param>
         /// <returns></returns>
-        //[Route("programmes/CategoryId/{id}")]
+        //public async Task<IActionResult> Index()
+        //{
 
-        //[HttpGet("[controller]/[action]/{id}")]
+
+        //    var broadCastContext = _context.Programmes.Include(p => p.Category);
+        //    return View(await broadCastContext.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(int? CategoryId)
+        {
+            var categories = _context.Categories.OrderBy(q => q.Title).ToList();
+            ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", CategoryId);
+
+            var broadCastContext = _context.Programmes
+                .Where(c => !CategoryId.HasValue || c.CategoryId == CategoryId)
+                .OrderBy(d => d.CategoryId)
+                .Include(d => d.Category);
+            return View(await broadCastContext.ToListAsync());
+        }
+
+        /// <summary>
+        /// funkar spara
+        /// </summary>
+        /// <param name="CategoryId"></param>
+        /// <returns></returns>
         public ActionResult GetCategories(int? CategoryId)
         {
             //ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
@@ -100,54 +61,12 @@ namespace WebAppCa.Controllers
                 .Where(c => !CategoryId.HasValue || c.CategoryId == categoryId)
                 .OrderBy(d => d.CategoryId)
                 .Include(d => d.Category);
-            //var sql = programmes.ToString();
+            
             return View(programmes.ToList());
         }
 
 
 
-        //public async Task<IActionResult> GetCategories(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-        //    ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", search);
-        //    int categoryId = selectedCategory.GetValueOrDefault();
-        //    var programmes = _context.Programmes
-        //        .Where(c => !id.HasValue || c.CategoryId == id)
-        //        .OrderBy(d => d.CategoryId)
-        //        .Include(d => d.Category);
-        //    if (programme == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(programme);
-        //}
-
-        //public ActionResult Index2(string search)
-        //{
-        //    //ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
-        //    //IQueryable<Programme> custQuery =
-        //    //    from p in _context.Categories
-        //    //    where p.Title == "search".SelectMany("Title");
-        //    //var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-        //    //ViewBag.SelectedCategory = new SelectList(categories, "CategoryId", "Title", SelectedCategory);
-        //    //int CategoryId = SelectedCategory.GetValueOrDefault();
-
-        //    //IQueryable<Programme> programmes = _context.Programmes
-        //    //    .Where(c => !SelectedCategory.HasValue || c.CategoryId == CategoryId)
-        //    //    .OrderBy(d => d.CategoryId)
-        //    //    .Include(d => d.Category);
-        //    //var sql = programmes.ToString();
-        //    //return View(programmes.ToList());
-
-
-        //    var broadCastContext = _context.Programmes.Include(p => p.Category).ThenInclude(p => p.Title.Contains("search"));
-        //    return View(broadCastContext.ToList());
-        //}
         // GET: Programmes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
