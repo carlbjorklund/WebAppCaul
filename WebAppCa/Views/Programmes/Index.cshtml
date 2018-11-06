@@ -22,6 +22,17 @@
     </div>
 </section>
 
+@*@Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)*@
+
+
+
+@using (Html.BeginForm("Index","Programmes", FormMethod.Get ))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 
 <table class=" table table-sm">
