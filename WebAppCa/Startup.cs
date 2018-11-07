@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebAppCa.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using WebAppCa.Models;
 
 namespace WebAppCa
 {
