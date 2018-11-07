@@ -36,12 +36,12 @@
     }
 
 
-    <table class=" table table-sm">
+   
 
 
         @foreach (var item in Model)
         {
-            <tr>
+            
                 <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
                     <li data-keywords="Sports News Hour" class="media my-8">
                         <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
@@ -49,6 +49,7 @@
                             <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
                             <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
                             <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
+                            <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a>
 
                         </div>
                     </li>
@@ -56,10 +57,10 @@
 
 
 
-            </tr>
+           
         }
 
-    </table>
+   
 
 
     </div>

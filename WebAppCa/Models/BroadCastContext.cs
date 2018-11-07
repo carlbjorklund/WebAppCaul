@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -11,7 +12,7 @@ using WebAppCa.Models;
 
 namespace WebAppCa.Models
 {
-    public class BroadCastContext : DbContext
+    public class BroadCastContext : IdentityDbContext
     {
         public BroadCastContext()
         {
