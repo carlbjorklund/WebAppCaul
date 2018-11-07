@@ -25,7 +25,7 @@ namespace WebAppCa.Models
         public DbSet<Channel> Channels { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
-        public DbSet<ScheduleViewModel> SchedulesiewModels { get; set; }
+      
 
     }
 }
