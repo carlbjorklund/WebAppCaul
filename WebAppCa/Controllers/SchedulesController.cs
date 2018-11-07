@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebAppCa.Models;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {
@@ -21,13 +21,10 @@ namespace WebAppCa.Controllers
 
             var channels = _context.Channels.OrderBy(q => q.Name).ToList();
             ViewData["ChannelId"] = new SelectList(channels,"ChannelId", "Name", channelId);
-
-           
-
+            
             var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
                 .Include(s => s.Programme.Category).ToList();
             
-
             if (categoryId != 0)
             {
                 broadCastContext1 = _context.Schedules.Where(s => s.Programme.CategoryId == categoryId).ToList();
@@ -39,9 +36,6 @@ namespace WebAppCa.Controllers
             }
 
         
-
-
-
             return View(broadCastContext1);
         }
 

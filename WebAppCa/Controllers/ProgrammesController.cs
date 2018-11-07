@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.ResultOperators.Internal;
-using WebAppCa.Models;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {

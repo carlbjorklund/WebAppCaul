@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebAppCa.Models;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {

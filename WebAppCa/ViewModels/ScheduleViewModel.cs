@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAppCa.Models
+namespace WebAppCa.ViewModels
 {
     public class ScheduleViewModel
     {

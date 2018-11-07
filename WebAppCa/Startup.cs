@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebAppCa.Models;
+using WebAppCa.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebAppCa
