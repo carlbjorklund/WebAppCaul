@@ -1,0 +1,13 @@
+﻿@model WebAppCa.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<h2>Login</h2>
+
+<form asp-controller="Account" asp-action="Login" method="post">
+    UserName : <input type="text" asp-for="UserName" /> <br />
+    Password : <input type="password" asp-for="Password" /> <br />
+    <input type="checkbox" asp-for="RememberMe" />Remember Me<br />
+    <input type="submit" value="Login" />
+</form>
