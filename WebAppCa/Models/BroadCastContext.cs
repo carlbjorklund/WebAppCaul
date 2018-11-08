@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using WebAppCa.ViewModels;
+using WebAppCa.Models;
 
 namespace WebAppCa.Models
 {
@@ -25,6 +26,7 @@ namespace WebAppCa.Models
         public DbSet<Channel> Channels { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<WebAppCa.Models.User> User { get; set; }
       
 
     }
