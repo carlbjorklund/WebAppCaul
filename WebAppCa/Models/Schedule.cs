@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,8 +35,12 @@ namespace WebAppCa.Models
         public  int ChannelId { get; set; }
         public int ProgrammeId { get; set; }
 
+        [ForeignKey("UserId")]
+        public virtual  User User { get; set; }
+        public IList<UserSchedule> UserSchedules { get; set; }
 
-     
+
+
 
     }
 }

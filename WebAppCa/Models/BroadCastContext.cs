@@ -26,9 +26,14 @@ namespace WebAppCa.Models
         public DbSet<Channel> Channels { get; set; }
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
-        public DbSet<WebAppCa.Models.User> User { get; set; }
-      
+        public DbSet<User> User { get; set; }
+        public DbSet<UserSchedule> UserSchedules { get; set; }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
 
