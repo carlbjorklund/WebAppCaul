@@ -1,12 +1,16 @@
 ﻿@using Microsoft.CodeAnalysis.Options
 @model IEnumerable<WebAppCa.Models.Schedule>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-1">ULCA </h1>
-        <p class="lead">Your schedules here at ULCA Broadcast.</p>
+
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Us</strong> and <strong>You</strong>. </p>
+        </div>
     </div>
-</div>
+
+</section>
 
 <section>
     <div class="wrapper">
@@ -23,12 +27,13 @@
     {
         <div align="center">
             <span>
-                Category @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>) 
-                Channel: @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>) </span>
+                Category @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+                Channel: @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)
+            </span>
 
-                @*Find by name: @Html.TextBox("SearchString")*@
-                <button type="submit" value="Search" class="btn btn-info">filter</button>
-        </div>      @*<input type="submit" value="Search" />*@
+            @*Find by name: @Html.TextBox("SearchString")*@
+            <button type="submit" value="Search" class="btn btn-info">filter</button>
+        </div> @*<input type="submit" value="Search" />*@
 
     }
 

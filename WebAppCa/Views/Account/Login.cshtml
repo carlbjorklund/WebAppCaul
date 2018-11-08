@@ -3,13 +3,52 @@
     ViewData["Title"] = "SignIn";
 }
 
-<h2>Login</h2>
 
-<form asp-controller="Account" asp-action="Login" method="post">
-    UserName : <input type="text" asp-for="UserName" /> <br />
-    Password : <input type="password" asp-for="Password" /> <br />
-    <input type="checkbox" asp-for="RememberMe" />Remember Me<br />
-    <input type="submit" value="Login" />
-</form>
+@*<form asp-controller="Account" asp-action="Login" method="post">
+        UserName : <input type="text" asp-for="UserName" /> <br />
+        Password : <input type="password" asp-for="Password" /> <br />
+        <input type="checkbox" asp-for="RememberMe" />Remember Me<br />
+        <input type="submit" value="Login" />
+    </form>*@
 
-i
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Us</strong> and <strong>You</strong>. </p>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="more-space">
+    <div class="container">
+        <div class="row2">
+            <div class="col-lg-6 offset-lg-3">
+                <form asp-controller="Account" id="contactform" method="post" asp-action="Login">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName4">User Name </label>
+                            <input type="text" asp-for="UserName" class="form-control" id="inputName4" name="UserName" placeholder="User name">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="inputPassword">Name</label>
+                            <input type="password" asp-for="Password"  class="form-control" id="inputPassword" name="Password" placeholder="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label id="RememberMe"> Remember me? </label>
+                        <input type="checkbox" asp-for="RememberMe"  class="form-control" id="inputMessage4" name="RememberMe" placeholder="Remember Me?">
+                    </div>
+
+
+                    <button input type="submit" value="Login" class="btn btn-primary">Login</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>

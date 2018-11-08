@@ -34,15 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Update="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
   </ItemGroup>
 

@@ -7,12 +7,16 @@
 
 
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-1">ULCA </h1>
-        <p class="lead">Your shows at ULCA Broadcast.</p>
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Us</strong> and <strong>You</strong>. </p>
+        </div>
     </div>
-</div>
+
+</section>
+
 <section>
     <div class="wrapper">
         <blockquote class="blockquote text-center">
@@ -25,42 +29,42 @@
 <div class="container">
 
 
-@using (Html.BeginForm("Index","Programmes", FormMethod.Get ))
-{
-    <div align="center">
+    @using (Html.BeginForm("Index", "Programmes", FormMethod.Get))
+    {
+        <div align="center">
 
-        @*<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*@
+            @*<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">*@
             <button type="submit" value="Search" class="btn btn-info">filter</button>
-            @Html.DropDownList("CategoryId" , ViewData["CategoryId"] as IEnumerable<SelectListItem>)
-    </div>
+            @Html.DropDownList("CategoryId", ViewData["CategoryId"] as IEnumerable<SelectListItem>)
+        </div>
     }
 
 
-   
-
-
-        @foreach (var item in Model)
-        {
-            
-                <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
-                    <li data-keywords="Sports News Hour" class="media my-8">
-                        <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
-                            <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
-                            <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
-                            <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a>
-
-                        </div>
-                    </li>
-                </ul>
 
 
 
-           
-        }
+    @foreach (var item in Model)
+    {
 
-   
+        <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
+            <li data-keywords="Sports News Hour" class="media my-8">
+                <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
+                    <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
+                    <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
+                    <a asp-action="Details" asp-route-id="@item.ProgrammeId">Details</a>
+
+                </div>
+            </li>
+        </ul>
 
 
-    </div>
+
+
+    }
+
+
+
+
+</div>

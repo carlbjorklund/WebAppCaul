@@ -9,15 +9,24 @@
     <title>@ViewData["Title"] - WebAppCa</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <script src="~/js/main.js"></script>
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/jquery.easy-autocomplete.min.js"></script>
+
         <link href="~/css/main.css" rel="stylesheet" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/css/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/css/bootstrap-reboot.css" rel="stylesheet" />
+        <link href="~/css/bootstrap.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <script src="~/js/main.js"></script>
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/jquery.easy-autocomplete.min.js"></script>
+        <link href="~/css/main.css" rel="stylesheet" />
+        <link href="~/css/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/css/bootstrap-reboot.css" rel="stylesheet" />
+        <link href="~/css/bootstrap.css" rel="stylesheet" />
+
     </environment>
 </head>
 
@@ -101,7 +110,7 @@
 
                     <div class="col-sm-3">
                         <h5>Logo</h5>
-                        <div class="logo">
+                        <div class="justify-content-center logo">
                             <ul>
                                 <li>
                                     <a href="#">
