@@ -51,7 +51,7 @@ namespace WebAppCa.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Index", "Account");
                 }
 
                 return View();
@@ -68,7 +68,7 @@ namespace WebAppCa.Controllers
             {
                 var Result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
                 if (Result.Succeeded)
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Account");
                 return View();
             }
 
