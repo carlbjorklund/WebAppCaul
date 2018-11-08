@@ -160,9 +160,7 @@ p {
         margin-top: 60px;
     }
     
-    width: 100%;
-    justify-content: center;
-    
+   
 }
 @media only screen and (max-width: 360px) {
     

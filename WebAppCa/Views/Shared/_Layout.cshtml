@@ -32,11 +32,6 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        @*<partial name="_LoginPartial" />*@
-        
-        
-        @*<nav class= "navbar navbar-dark navbar-fixed-top">*@
-            @*<div class="container">*@
                 <div class="navbar-header">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -71,74 +66,15 @@
        
     </nav>
 
-        <partial name="_CookieConsentPartial" />
+     
         
         
     @RenderBody()
    
+    
+<partial name="_FooterPArtial" />
 
-    <div class="container body-content">
-       
-        <hr />
-        <footer id="myFooter" class="footer">
-            <div class="footcontainer ">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h5>Contact us</h5>
-                        <ul class="list-unstyled mx-auto justify-content-center">
-                            <li><a href="#">Frejgatan 6a</a></li>
-                            <li><a href="#">736 30 Kungsör</a></li>
-                            <li><a href="#">Sweden</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 ">
-                        <h5>Support</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Help desk</a></li>
-                            <li><a href="#">Forums</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3">
-                        <h5>Legal</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-sm-3">
-                        <h5>Logo</h5>
-                        <div class="justify-content-center logo">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="~/images/Emblem.png" class="logo" alt="ULCA logo">
-                                    </a>
-                                </li>
-                        
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class=" cop col-lg-12">
-                <ul class="list-unstyled d-flex justify-content-around">
-                    <li>© 2018 Copyright </li>
-                    <li> Provided By </li>
-                    <li> ULCA Web Services</li>
-                </ul>
-            </div>
-           
-
-        </footer>
-    </div>
-
-
-    <environment include="Development">
+<environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
