@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using WebAppCa.Services;
 using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
@@ -40,18 +41,15 @@ namespace WebAppCa.Controllers
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
-
                 string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
-
                 string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, protocol: HttpContext.Request.Scheme);
+                System.IO.File.WriteAllText(@"D:\Confirmations\ConfirmEmail.txt", confirmationLink);
 
-                System.IO.File.WriteAllText(@"C:\Temp\ConfirmEmail.txt", confirmationLink);
+                //EmailService.Send(user.Email, "Awaiting email confirmation", "Please confirm your email " + confirmationLink);
 
-                //Send Emal ----
-
-                if (result.Succeeded)
+            if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Account");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 return View();
@@ -78,5 +76,22 @@ namespace WebAppCa.Controllers
                 await signInManager.SignOutAsync();
                 return RedirectToAction("Login", "Account");
             }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+            var result = await userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                ViewBag.Msg = "Email confirmation Succeeded!";
+            }
+            else
+            {
+                ViewBag.Msg = "Email confirmation Failed!";
+            }
+
+            return View();
         }
     }
+ }
