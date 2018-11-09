@@ -76,8 +76,12 @@ namespace WebAppCa.Controllers
             }
 
             var programme = await _context.Programmes
+                .OrderBy(d => d.CategoryId)
                 .Include(p => p.Category)
-                .FirstOrDefaultAsync(m => m.ProgrammeId == id);
+            .FirstOrDefaultAsync(m => m.ProgrammeId == id);
+
+            //.Include(d => d.Category)
+            //.FirstOrDefaultAsync(m => m.ProgrammeId == id);
             if (programme == null)
             {
                 return NotFound();
