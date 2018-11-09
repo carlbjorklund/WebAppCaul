@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,9 +32,10 @@ namespace WebAppCa
             //for server on azure
             //var connection =@"Server = tcp:webappca20181108112558dbserver.database.windows.net,1433; Initial Catalog = WebAppCa20181108112558_db; Persist Security Info = False; User ID = ADM; Password = Carlruhr1980; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
 
-
             services.AddDbContext<BroadCastContext>
                 (options => options.UseSqlServer(connection));
+
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BroadCastContext>()
                 .AddDefaultTokenProviders();

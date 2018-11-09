@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using WebAppCa.Models;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {
@@ -51,23 +54,18 @@ namespace WebAppCa.Controllers
         }
 
         // GET: UserChannels/Create
-        public IActionResult Create(int? channelId)
+        public IActionResult TestCreate(int? channelId)
         {
-            //syntax referens
-            //var categories = _context.Categories.OrderBy(q => q.Title).ToList();
-            //ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", CategoryId);
+            MyChannelViewModel myChannel = new MyChannelViewModel();
+
+            myChannel.UserName = User.Identity.Name;
+        
+            myChannel.UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var channels = _context.Channels.OrderBy(q => q.Name).ToList();
             ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name", channelId);
 
-            //ViewData["Title"] = new SelectList(_context.Channels, "ChannelId", "Title");
-            //var user = await _userManager.GetUserAsync(accessor.HttpContext.User);
-            //var user = userManager.GetUserAsync(HttpContext.User);
-            string user = User.Identity.Name;
-            //var user = userManager.GetUserAsync(User);
-            ViewData["Name"] = User;
-            //ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId");
-            return View();
+            return View(myChannel);
         }
 
         // POST: UserChannels/Create

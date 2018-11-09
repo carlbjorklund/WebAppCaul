@@ -35,6 +35,9 @@ namespace WebAppCa.Models
         {
             base.OnModelCreating(modelBuilder);
         }
+
+
+        public DbSet<WebAppCa.ViewModels.MyChannelViewModel> MyChannelViewModel { get; set; }
     }
 }
 
