@@ -18,6 +18,8 @@ namespace WebAppCa.Models
 
         public virtual ICollection<Schedule> Schedules { get; set; }
 
+        public ICollection<UserChannel> UserChannels { get; set; }
+
 
 
 

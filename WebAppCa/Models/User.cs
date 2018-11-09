@@ -28,7 +28,8 @@ namespace WebAppCa.Models
         ////[ForeignKey("ScheduleId")]
         //public virtual Schedule Schedule { get; set; }
 
-        public IList<UserSchedule> UserSchedules { get; set; }
+        public ICollection<UserSchedule> UserSchedules { get; set; }
+        public ICollection<UserChannel> UserChannels { get; set; }
 
     }
 
