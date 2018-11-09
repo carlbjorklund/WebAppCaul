@@ -25,9 +25,9 @@ namespace WebAppCa.Models
         private string UserName { get; set; }
         private string Password { get; set; }
 
-        [ForeignKey("ScheduleId")]
-        public virtual Schedule Schedule { get; set; }
-        
+        ////[ForeignKey("ScheduleId")]
+        //public virtual Schedule Schedule { get; set; }
+
         public IList<UserSchedule> StudentCourses { get; set; }
 
     }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppCa.Models;
 
 namespace WebAppCa.Migrations
 {
     [DbContext(typeof(BroadCastContext))]
-    partial class BroadCastContextModelSnapshot : ModelSnapshot
+    [Migration("20181108230333_users4")]
+    partial class users4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,11 +257,17 @@ namespace WebAppCa.Migrations
 
                     b.Property<TimeSpan>("StartTime");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("ScheduleId");
 
                     b.HasIndex("ChannelId");
 
                     b.HasIndex("ProgrammeId");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Schedules");
                 });
@@ -270,7 +278,11 @@ namespace WebAppCa.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ScheduleId");
+
                     b.HasKey("UserId");
+
+                    b.HasIndex("ScheduleId");
 
                     b.ToTable("User");
                 });
@@ -357,6 +369,17 @@ namespace WebAppCa.Migrations
                         .WithMany("Schedules")
                         .HasForeignKey("ProgrammeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebAppCa.Models.User", "User")
+                        .WithOne()
+                        .HasForeignKey("WebAppCa.Models.Schedule", "UserId");
+                });
+
+            modelBuilder.Entity("WebAppCa.Models.User", b =>
+                {
+                    b.HasOne("WebAppCa.Models.Schedule", "Schedule")
+                        .WithMany()
+                        .HasForeignKey("ScheduleId");
                 });
 
             modelBuilder.Entity("WebAppCa.Models.UserSchedule", b =>
