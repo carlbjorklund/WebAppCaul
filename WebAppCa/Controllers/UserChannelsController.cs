@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using WebAppCa.Models;
 
 namespace WebAppCa.Controllers
@@ -12,6 +15,8 @@ namespace WebAppCa.Controllers
     public class UserChannelsController : Controller
     {
         private readonly BroadCastContext _context;
+        public IIdentity LoggedInUser => User.Identity;
+        UserManager<IdentityUser> userManager;
 
         public UserChannelsController(BroadCastContext context)
         {
@@ -46,10 +51,22 @@ namespace WebAppCa.Controllers
         }
 
         // GET: UserChannels/Create
-        public IActionResult Create()
+        public IActionResult Create(int? channelId)
         {
-            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId");
-            ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId");
+            //syntax referens
+            //var categories = _context.Categories.OrderBy(q => q.Title).ToList();
+            //ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", CategoryId);
+
+            var channels = _context.Channels.OrderBy(q => q.Name).ToList();
+            ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name", channelId);
+
+            //ViewData["Title"] = new SelectList(_context.Channels, "ChannelId", "Title");
+            //var user = await _userManager.GetUserAsync(accessor.HttpContext.User);
+            //var user = userManager.GetUserAsync(HttpContext.User);
+            string user = User.Identity.Name;
+            //var user = userManager.GetUserAsync(User);
+            ViewData["Name"] = User;
+            //ViewData["UserId"] = new SelectList(_context.User, "UserId", "UserId");
             return View();
         }
 
