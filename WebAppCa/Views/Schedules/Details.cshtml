@@ -45,12 +45,14 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Channel.ChannelId)
+            @Html.DisplayFor(model => model.Channel.Name) ///test
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Programme)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Programme.ProgrammeId)
+            @Html.DisplayFor(model => model.Programme.Title)///test
         </dd>
     </dl>
 </div>

@@ -54,7 +54,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: UserChannels/Create
-        public IActionResult TestCreate(int? channelId)
+        public IActionResult TestCreate(int channelId)
         {
             MyChannelViewModel myChannel = new MyChannelViewModel();
 
