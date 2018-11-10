@@ -30,12 +30,11 @@ namespace WebAppCa
             var connection = @"Server=(localdb)\mssqllocaldb;Database=WebAppCa.BroadBadCastContext.NewDb;Trusted_Connection=True;ConnectRetryCount=0";
 
             //for server on azure
-            //var connection =@"Server = tcp:webappca20181108112558dbserver.database.windows.net,1433; Initial Catalog = WebAppCa20181108112558_db; Persist Security Info = False; User ID = ADM; Password = Carlruhr1980; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
 
             services.AddDbContext<BroadCastContext>
                 (options => options.UseSqlServer(connection));
 
-            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+           
 
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<BroadCastContext>()
                 .AddDefaultTokenProviders();

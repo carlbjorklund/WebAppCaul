@@ -13,7 +13,7 @@ namespace WebAppCa.Services
         {
             var client = new SmtpClient("smtp.gmail.com", 587)
             {
-                Credentials = new NetworkCredential("ahlteran@gmail.com", "Leinad1980!"),
+                Credentials = new NetworkCredential("ahlteran@gmail.com", "XXXXXX!"),
                 EnableSsl = true
             };
             client.Send("ahlteran@gmail.com", ToAddress, Subject, Body);
