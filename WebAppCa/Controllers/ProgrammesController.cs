@@ -93,7 +93,7 @@ namespace WebAppCa.Controllers
         // GET: Programmes/Create
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
             return View();
         }
 
