@@ -16,6 +16,14 @@
     <Compile Remove="Migrations\20181108232444_users10.Designer.cs" />
     <Compile Remove="Migrations\20181108232551_users11.cs" />
     <Compile Remove="Migrations\20181108232551_users11.Designer.cs" />
+    <Compile Remove="Migrations\20181111145117_renewed.cs" />
+    <Compile Remove="Migrations\20181111145117_renewed.Designer.cs" />
+    <Compile Remove="Migrations\20181111145826_update101.cs" />
+    <Compile Remove="Migrations\20181111145826_update101.Designer.cs" />
+    <Compile Remove="Migrations\20181111150053_update102.cs" />
+    <Compile Remove="Migrations\20181111150053_update102.Designer.cs" />
+    <Compile Remove="Migrations\20181111150344_update105.cs" />
+    <Compile Remove="Migrations\20181111150344_update105.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using WebAppCa.Models;
 using WebAppCa.Services;
 using WebAppCa.ViewModels;
 
@@ -13,8 +15,10 @@ namespace WebAppCa.Controllers
         {
             UserManager<IdentityUser> userManager;
             SignInManager<IdentityUser> signInManager;
+            private readonly BroadCastContext _context;
+            ICollection<Channel> MyChannels;
 
-            public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager)
+        public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager)
             {
                 userManager = _userManager;
                 signInManager = _signInManager;
@@ -30,6 +34,20 @@ namespace WebAppCa.Controllers
             {
                 return View();
             }
+
+            public IActionResult AddChannel()
+            {
+            var channels = _context.Channels.OrderBy(q => q.Name).ToList();
+            ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
+
+            
+
+            return View();
+
+            }
+
+
+
 
             [HttpPost]
             public async Task<IActionResult> Register(RegisterViewModel model)

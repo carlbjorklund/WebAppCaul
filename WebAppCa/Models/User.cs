@@ -13,6 +13,10 @@ namespace WebAppCa.Models
         public User(int userId)
         {
             UserId = userId;
+
+            MyChannels = new List<Channel>();
+            MyProgrammes = new List<Programme>();
+            MySchedules = new List<Schedule>();
         }
 
         public int UserId
@@ -24,12 +28,12 @@ namespace WebAppCa.Models
         private string Email { get; set; }
         private string UserName { get; set; }
         private string Password { get; set; }
+        public ICollection<Channel> MyChannels { get; set; }
 
-        ////[ForeignKey("ScheduleId")]
-        //public virtual Schedule Schedule { get; set; }
+        public ICollection<Programme> MyProgrammes { get; set; }
 
-        public ICollection<UserSchedule> UserSchedules { get; set; }
-        public ICollection<UserChannel> UserChannels { get; set; }
+        public ICollection<Schedule> MySchedules { get; set; }
+
 
     }
 

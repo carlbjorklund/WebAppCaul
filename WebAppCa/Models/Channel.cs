@@ -16,9 +16,9 @@ namespace WebAppCa.Models
         public string Description { get; set; }
         public string Image { get; set; }
 
-        public virtual ICollection<Schedule> Schedules { get; set; }
+       
 
-        public ICollection<UserChannel> UserChannels { get; set; }
+
 
 
 

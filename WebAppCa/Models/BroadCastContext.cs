@@ -27,8 +27,7 @@ namespace WebAppCa.Models
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<User> User { get; set; }
-        public DbSet<UserSchedule> UserSchedules { get; set; }
-        public DbSet<UserChannel> UserChannels { get; set; }
+      
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,7 +36,6 @@ namespace WebAppCa.Models
         }
 
 
-        public DbSet<WebAppCa.ViewModels.MyChannelViewModel> MyChannelViewModel { get; set; }
     }
 }
 

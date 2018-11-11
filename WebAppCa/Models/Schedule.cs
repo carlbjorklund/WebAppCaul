@@ -35,9 +35,10 @@ namespace WebAppCa.Models
         public  int ChannelId { get; set; }
         public int ProgrammeId { get; set; }
 
-        ////[ForeignKey("UserId")]
-        //public virtual User User { get; set; }
-        public IList<UserSchedule> UserSchedules { get; set; }
+     
+ 
+
+ 
 
 
 
