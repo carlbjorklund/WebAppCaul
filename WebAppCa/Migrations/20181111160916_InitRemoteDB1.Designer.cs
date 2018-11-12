@@ -10,8 +10,8 @@ using WebAppCa.Models;
 namespace WebAppCa.Migrations
 {
     [DbContext(typeof(BroadCastContext))]
-    [Migration("20181107153648_users")]
-    partial class users
+    [Migration("20181111160916_InitRemoteDB1")]
+    partial class InitRemoteDB1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -209,7 +209,11 @@ namespace WebAppCa.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("ChannelId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Channels");
                 });
@@ -230,9 +234,13 @@ namespace WebAppCa.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("ProgrammeId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Programmes");
                 });
@@ -257,42 +265,28 @@ namespace WebAppCa.Migrations
 
                     b.Property<TimeSpan>("StartTime");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("ScheduleId");
 
                     b.HasIndex("ChannelId");
 
                     b.HasIndex("ProgrammeId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Schedules");
                 });
 
-            modelBuilder.Entity("WebAppCa.Models.ScheduleViewModel", b =>
+            modelBuilder.Entity("WebAppCa.Models.User", b =>
                 {
-                    b.Property<int>("ScheduleViewModelId")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("AirDate");
+                    b.HasKey("UserId");
 
-                    b.Property<int>("CategoryId");
-
-                    b.Property<string>("CategoryName");
-
-                    b.Property<string>("Channel");
-
-                    b.Property<TimeSpan>("EndTime");
-
-                    b.Property<int>("Length");
-
-                    b.Property<string>("ProgrameDescription");
-
-                    b.Property<string>("ProgrameName");
-
-                    b.Property<TimeSpan>("StartTime");
-
-                    b.HasKey("ScheduleViewModelId");
-
-                    b.ToTable("SchedulesiewModels");
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -340,17 +334,28 @@ namespace WebAppCa.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("WebAppCa.Models.Channel", b =>
+                {
+                    b.HasOne("WebAppCa.Models.User")
+                        .WithMany("MyChannels")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("WebAppCa.Models.Programme", b =>
                 {
                     b.HasOne("WebAppCa.Models.Category", "Category")
                         .WithMany("Programmes")
                         .HasForeignKey("CategoryId");
+
+                    b.HasOne("WebAppCa.Models.User")
+                        .WithMany("MyProgrammes")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("WebAppCa.Models.Schedule", b =>
                 {
                     b.HasOne("WebAppCa.Models.Channel", "Channel")
-                        .WithMany("Schedules")
+                        .WithMany()
                         .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -358,6 +363,10 @@ namespace WebAppCa.Migrations
                         .WithMany("Schedules")
                         .HasForeignKey("ProgrammeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("WebAppCa.Models.User")
+                        .WithMany("MySchedules")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

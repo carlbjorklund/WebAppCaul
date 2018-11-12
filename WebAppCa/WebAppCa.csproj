@@ -10,12 +10,40 @@
     <Compile Remove="Migrations\20181103101657_ULCAdb2018a.Designer.cs" />
     <Compile Remove="Migrations\20181103102433_ULCAdb2018b.cs" />
     <Compile Remove="Migrations\20181103102433_ULCAdb2018b.Designer.cs" />
+    <Compile Remove="Migrations\20181103110601_InitialCreate.cs" />
+    <Compile Remove="Migrations\20181103110601_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20181103224858_initial.cs" />
+    <Compile Remove="Migrations\20181103224858_initial.Designer.cs" />
+    <Compile Remove="Migrations\20181103232039_initial2.cs" />
+    <Compile Remove="Migrations\20181103232039_initial2.Designer.cs" />
+    <Compile Remove="Migrations\20181103232418_MyFirstMigration.cs" />
+    <Compile Remove="Migrations\20181103232418_MyFirstMigration.Designer.cs" />
+    <Compile Remove="Migrations\20181107153648_users.cs" />
+    <Compile Remove="Migrations\20181107153648_users.Designer.cs" />
+    <Compile Remove="Migrations\20181107163133_users1.cs" />
+    <Compile Remove="Migrations\20181107163133_users1.Designer.cs" />
+    <Compile Remove="Migrations\20181107225644_users2.cs" />
+    <Compile Remove="Migrations\20181107225644_users2.Designer.cs" />
+    <Compile Remove="Migrations\20181108180324_users3.cs" />
+    <Compile Remove="Migrations\20181108180324_users3.Designer.cs" />
+    <Compile Remove="Migrations\20181108230333_users4.cs" />
+    <Compile Remove="Migrations\20181108230333_users4.Designer.cs" />
+    <Compile Remove="Migrations\20181108230644_users5.cs" />
+    <Compile Remove="Migrations\20181108230644_users5.Designer.cs" />
+    <Compile Remove="Migrations\20181108231034_users6.cs" />
+    <Compile Remove="Migrations\20181108231034_users6.Designer.cs" />
+    <Compile Remove="Migrations\20181108231317_users8.cs" />
+    <Compile Remove="Migrations\20181108231317_users8.Designer.cs" />
     <Compile Remove="Migrations\20181108231640_users9.cs" />
     <Compile Remove="Migrations\20181108231640_users9.Designer.cs" />
     <Compile Remove="Migrations\20181108232444_users10.cs" />
     <Compile Remove="Migrations\20181108232444_users10.Designer.cs" />
     <Compile Remove="Migrations\20181108232551_users11.cs" />
     <Compile Remove="Migrations\20181108232551_users11.Designer.cs" />
+    <Compile Remove="Migrations\20181109144836_channellist.cs" />
+    <Compile Remove="Migrations\20181109144836_channellist.Designer.cs" />
+    <Compile Remove="Migrations\20181109145053_channellist1.cs" />
+    <Compile Remove="Migrations\20181109145053_channellist1.Designer.cs" />
     <Compile Remove="Migrations\20181111145117_renewed.cs" />
     <Compile Remove="Migrations\20181111145117_renewed.Designer.cs" />
     <Compile Remove="Migrations\20181111145826_update101.cs" />
@@ -24,6 +52,14 @@
     <Compile Remove="Migrations\20181111150053_update102.Designer.cs" />
     <Compile Remove="Migrations\20181111150344_update105.cs" />
     <Compile Remove="Migrations\20181111150344_update105.Designer.cs" />
+    <Compile Remove="Migrations\20181111150618_Update8.cs" />
+    <Compile Remove="Migrations\20181111150618_Update8.Designer.cs" />
+    <Compile Remove="Migrations\20181111160428_InitRemoteDB.cs" />
+    <Compile Remove="Migrations\20181111160428_InitRemoteDB.Designer.cs" />
+    <Compile Remove="Migrations\20181111160514_InitRemoteDB1.cs" />
+    <Compile Remove="Migrations\20181111160514_InitRemoteDB1.Designer.cs" />
+    <Compile Remove="Migrations\20181111160540_InitRemoteDB-force.cs" />
+    <Compile Remove="Migrations\20181111160540_InitRemoteDB-force.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

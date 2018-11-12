@@ -35,20 +35,17 @@ namespace WebAppCa.Controllers
                 return View();
             }
 
-            public IActionResult AddChannel()
-            {
-            var channels = _context.Channels.OrderBy(q => q.Name).ToList();
-            ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
-
+            //public IActionResult AddChannel()
+            //{
             
+            //ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
 
-            return View();
+            //MyChannels.Add();
+            
+            //return View();
 
-            }
-
-
-
-
+            //}
+                     
             [HttpPost]
             public async Task<IActionResult> Register(RegisterViewModel model)
             {
