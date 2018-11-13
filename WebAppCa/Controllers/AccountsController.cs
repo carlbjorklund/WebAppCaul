@@ -59,18 +59,19 @@ namespace WebAppCa.Controllers
                 .FirstOrDefault(m => m.ChannelId == id);
 
 
-            model.MyChannels.Add(channel);
+            //model.MyChannels.Add(channel);
 
-           
-
+        
             if (ModelState.IsValid)
             {
                 _context.Add(model);
                 _context.SaveChanges();
             }
+            var mychannels = _context.MyChannelViewModel
+          .Include(s => s.MyChannels);
 
 
-                return View(model);
+            return View(mychannels.ToList());
         }
 
 

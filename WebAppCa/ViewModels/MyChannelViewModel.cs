@@ -11,9 +11,9 @@ namespace WebAppCa.ViewModels
 {
     public class MyChannelViewModel
     {
-        public string UserName { get; set; }
-      
         [Key]
+        public int MyChannelsId { get; set; }
+        public string UserName { get; set; }            
         public string UserID { get; set; }
         public List<Channel> MyChannels { get; set; }
 
