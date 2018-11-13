@@ -1,19 +1,51 @@
-﻿@model WebAppCa.Models.User
+﻿@model WebAppCa.ViewModels.MyChannelViewModel
 
 <h4>User</h4>
 <hr />
-<div class="row">
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="AddChannel">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+
+
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@using (Html.BeginForm("AddChannel", "Account", FormMethod.Post))
+{
+    <div align="center">
+        <span>
+            UserName : <input type="text" asp-for="UserName" />  <br />
+            UserID   : <input type="text" asp-for="UserID" /> <br />
+            <br />
+            @*<label asp-for="MyChannels" class="control-label"></label>
+        <select asp-for="MyChannels" class="form-control" asp-items="ViewBag.ChannelId"></select>*@
+            @*Channel: @Html.DropDownList("ChannelId", ViewData["ChannelId"] as IEnumerable<SelectListItem>)*@
+           @foreach (var item in Model.MyChannels)
+            {
+                @item.Name <br />
+                @item.ChannelId <br />
+                @item.Description <br />
+
+            }
+        </span>
+
+
+        <button type="submit" value="Create" class="btn btn-info">Create</button>
+    </div>
+
+
+}
+
+    <div>
+        @*<a asp-action="Index">Back to List</a>*@
+    </div>
 

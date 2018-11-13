@@ -45,9 +45,11 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ChannelId">Edit</a> |
+                <a asp-action="AddChannel" asp-controller="Account"  asp-route-id="@item.ChannelId">Add</a> |
+                @*<a href="@Url.Action("AddChannel", "Acount","item.ChannelID" )" class="btn btn-primary">Add to list</a>*@
                 <a asp-action="Details" asp-route-id="@item.ChannelId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ChannelId">Delete</a>
-              
+
             </td>
         </tr>
 }

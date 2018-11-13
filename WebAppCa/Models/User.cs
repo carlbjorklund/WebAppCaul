@@ -33,8 +33,7 @@ namespace WebAppCa.Models
         public ICollection<Programme> MyProgrammes { get; set; }
 
         public ICollection<Schedule> MySchedules { get; set; }
-
-
+        public static object Identity { get; internal set; }
     }
 
 }
