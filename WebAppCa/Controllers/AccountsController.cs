@@ -26,11 +26,54 @@ namespace WebAppCa.Controllers
 
 
         public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager, BroadCastContext context)
-            {
+        {
                 userManager = _userManager;
                 signInManager = _signInManager;
                _context = context;
+        }
+
+        //public IActionResult AddChannel()
+        //{
+
+        //    ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
+
+        //    MyChannelViewModel model = new MyChannelViewModel();
+        //    model.UserName = User.Identity.Name;
+        //    model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+        //    return View(model);
+
+
+        //}
+
+        public IActionResult AddChannel(int ? id)
+        {
+            MyChannelViewModel model = new MyChannelViewModel();
+
+            model.UserName = User.Identity.Name;
+            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+        
+             var channel = _context.Channels
+                .FirstOrDefault(m => m.ChannelId == id);
+
+
+            model.MyChannels.Add(channel);
+
+           
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(model);
+                _context.SaveChanges();
             }
+
+
+                return View(model);
+        }
+
+
 
             public IActionResult Index()
             {
@@ -43,97 +86,8 @@ namespace WebAppCa.Controllers
                 return View();
             }
 
-        public ActionResult AddChannel(int? id)
-        {
 
-            MyChannelViewModel myChannel = new MyChannelViewModel();
-            Channel channel1 = new Channel();
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            //ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
-
-            var channel = _context.Channels
-                 .FirstOrDefault(m => m.ChannelId == id);
-            if (channel == null)
-            {
-                return NotFound();
-            }
-
-            //channel1.ChannelId = channel.ChannelId;
-            //channel1.Description = channel.Description;
-            //channel1.Name = channel.Name;
-
-
-            myChannel.UserName = User.Identity.Name;
-            myChannel.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            myChannel.MyChannels.Add(channel);
-
-
-            //if (ModelState.IsValid)
-            //{
-            //    _context.Add(myChannel);
-            //    _context.SaveChanges();
-            //    return RedirectToAction(nameof(Index));
-            //}
-
-
-            //var channels = _context.Channels.ToListAsync();
-            //var channels = _context.Channels.OrderBy(q => q.Name).ToList();
-            //ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
-            //ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
-
-
-            return View(myChannel);
-           
-        }
-
-        /// <summary>
-        /// here the view model decides to become non-existent and disapear into cyberspace, eventhough there is a global variable
-        /// </summary>
-        /// <param name="myChannel"></param>
-        /// <returns></returns>
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddChannel(/*[Bind("ChannelID, Name,Description,Image, UserId")]*/ MyChannelViewModel myChannel)
-        {
-
-            //myChannel.UserName = User.Identity.Name;
-            //myChannel.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (ModelState.IsValid)
-            {
-                _context.Add(myChannel);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
-
-            return View(myChannel);
-        }
-        //public ActionResult AddChannel(int? Id)
-        //{
-        //    MyChannelViewModel myChannel = new MyChannelViewModel();
-
-        //    myChannel.UserName = User.Identity.Name;
-        //    myChannel.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        //    ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
-        //    //var channels = _context.Channels.ToListAsync();
-        //    //var channels = _context.Channels.OrderBy(q => q.Name).ToList();
-        //    //ViewData["ChannelId"] = new SelectList(channels, "ChannelId", "Name");
-
-
-
-        //    return View(myChannel);
-
-        //}
-
-        [HttpPost]
+            [HttpPost]
             public async Task<IActionResult> Register(RegisterViewModel model)
             {
                 IdentityUser user = new IdentityUser()

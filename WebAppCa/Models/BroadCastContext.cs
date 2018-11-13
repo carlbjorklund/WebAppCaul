@@ -36,6 +36,10 @@ namespace WebAppCa.Models
         }
 
 
+
+        public DbSet<WebAppCa.ViewModels.MyChannelViewModel> MyChannelViewModel { get; set; }
+
+
     }
 }
 

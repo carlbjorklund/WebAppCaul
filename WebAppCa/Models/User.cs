@@ -8,6 +8,15 @@ namespace WebAppCa.Models
 {
     public class User
     {
+        private string Email { get; set; }
+        private string UserName { get; set; }
+        private string Password { get; set; }
+        public List<Channel> MyChannels { get; set; }
+
+        public List<Programme> MyProgrammes { get; set; }
+
+        public List<Schedule> MySchedules { get; set; }
+        public static object Identity { get; internal set; }
         private int _userId;
 
         public User(int userId)
@@ -24,16 +33,17 @@ namespace WebAppCa.Models
             get => _userId;
             set => _userId = value;
         }
+        public List<Channel> AddChannels(Channel channel)
+        {
 
-        private string Email { get; set; }
-        private string UserName { get; set; }
-        private string Password { get; set; }
-        public ICollection<Channel> MyChannels { get; set; }
+            MyChannels.Add(channel);
+            
+            return MyChannels;
+        }
 
-        public ICollection<Programme> MyProgrammes { get; set; }
-
-        public ICollection<Schedule> MySchedules { get; set; }
-        public static object Identity { get; internal set; }
+       
     }
+
+ 
 
 }
