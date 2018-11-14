@@ -27,7 +27,6 @@ namespace WebAppCa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=188.121.44.217;Database=ulca_dev_remote;Integrated Security=False;User ID=hillheim; Password=!B3v9g0p; Connect Timeout=15;Encrypt=False;Packet Size=4096";
 
 
             //for server on azure
