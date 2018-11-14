@@ -13,9 +13,13 @@
     </div>
 
 </section>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -32,26 +36,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ChannelId">Edit</a> |
-                <a asp-action="AddChannel" asp-controller="Account"  asp-route-id="@item.ChannelId">Add</a> |
-                @*<a href="@Url.Action("AddChannel", "Acount","item.ChannelID" )" class="btn btn-primary">Add to list</a>*@
-                <a asp-action="Details" asp-route-id="@item.ChannelId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ChannelId">Delete</a>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
 
-            </td>
-        </tr>
-}
+                    @if (User.IsInRole("Admin, User"))
+                    {
+                        <a asp-action="AddChannel" asp-controller="Account" asp-route-id="@item.ChannelId" class="btn btn-primary">Add Channel</a>
+
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.ChannelId" class="btn btn-warning">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.ChannelId" class="btn btn-warning">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.ChannelId" class="btn btn-warning">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -91,6 +92,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Programmes/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
@@ -100,6 +102,7 @@ namespace WebAppCa.Controllers
         // POST: Programmes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProgrammeId,Title,Description,Image,Length,CategoryId")] Programme programme)
@@ -115,6 +118,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Programmes/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,6 +138,7 @@ namespace WebAppCa.Controllers
         // POST: Programmes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProgrammeId,Title,Description,Image,Length,CategoryId")] Programme programme)
@@ -168,6 +173,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Programmes/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

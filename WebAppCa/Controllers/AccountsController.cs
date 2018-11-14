@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,6 +38,8 @@ namespace WebAppCa.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
+        [Authorize(Roles ="Admin,User")]
         public IActionResult AddChannel(int ? id)
         {
             MyChannelViewModel model = new MyChannelViewModel();
@@ -67,6 +70,8 @@ namespace WebAppCa.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
+        [Authorize(Roles = "Admin,User")]
         public IActionResult AddProgramme(int? id)
         {
             MyProgrammesViewModel model = new MyProgrammesViewModel();
@@ -97,6 +102,8 @@ namespace WebAppCa.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        /// 
+        [Authorize(Roles = "Admin,User")]
         public IActionResult AddSchedule(int? id)
         {
             MySchedulesViewModel model = new MySchedulesViewModel();
@@ -123,8 +130,34 @@ namespace WebAppCa.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin,User,Editor")]
+        public IActionResult GetList()
+        {
+            MySchedulesViewModel model = new MySchedulesViewModel();
+            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var mySchedules = _context.MySchedules
+          .Include(s => s.MySchedules)
+          .Where(s => s.UserID == model.UserID);
+
+           return View(mySchedules);
+        }
+
+        [Authorize(Roles = "Admin,User,Editor")]
+        public IActionResult GetChannelList()
+        {
+            MyChannelViewModel model = new MyChannelViewModel();
+            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var myChannels = _context.MyChannelViewModel
+           .Include(s => s.MyChannels)
+           .Where(s => s.UserID == model.UserID);
+        
+            return View(myChannels);
+        }
 
 
+        [Authorize(Roles = "Admin,User,Editor")]
         public IActionResult Index()
             {
                 return View();

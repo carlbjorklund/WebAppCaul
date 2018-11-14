@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace WebAppCa.Controllers
         {
             return View(await _context.Channels.ToListAsync());
         }
-
+      
         // GET: Channels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -44,6 +45,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Channels/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -54,6 +56,7 @@ namespace WebAppCa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("ChannelId,Name,Description,Image")] Channel channel)
         {
             if (ModelState.IsValid)
@@ -66,6 +69,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Channels/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,6 +88,7 @@ namespace WebAppCa.Controllers
         // POST: Channels/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ChannelId,Name,Description,Image")] Channel channel)
@@ -117,6 +122,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Channels/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +141,7 @@ namespace WebAppCa.Controllers
         }
 
         // POST: Channels/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
