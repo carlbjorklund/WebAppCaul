@@ -38,6 +38,8 @@ namespace WebAppCa.Models
 
 
         public DbSet<WebAppCa.ViewModels.MyChannelViewModel> MyChannelViewModel { get; set; }
+        public DbSet<WebAppCa.ViewModels.MyProgrammesViewModel> MyProgrammes { get; set; }
+        public DbSet<WebAppCa.ViewModels.MySchedulesViewModel> MySchedules { get; set; }
 
 
     }

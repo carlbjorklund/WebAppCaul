@@ -32,21 +32,11 @@ namespace WebAppCa.Controllers
                _context = context;
         }
 
-        //public IActionResult AddChannel()
-        //{
-
-        //    ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
-
-        //    MyChannelViewModel model = new MyChannelViewModel();
-        //    model.UserName = User.Identity.Name;
-        //    model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-
-        //    return View(model);
-
-
-        //}
-
+        /// <summary>
+        /// Add Channels to favorite list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult AddChannel(int ? id)
         {
             MyChannelViewModel model = new MyChannelViewModel();
@@ -58,25 +48,84 @@ namespace WebAppCa.Controllers
              var channel = _context.Channels
                 .FirstOrDefault(m => m.ChannelId == id);
 
-
-            //model.MyChannels.Add(channel);
-
-        
+            model.MyChannels.Add(channel);
+                             
             if (ModelState.IsValid)
             {
                 _context.Add(model);
                 _context.SaveChanges();
             }
             var mychannels = _context.MyChannelViewModel
-          .Include(s => s.MyChannels);
+            .Include(s => s.MyChannels);
 
 
-            return View(mychannels.ToList());
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Add Programmes to favorite list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IActionResult AddProgramme(int? id)
+        {
+            MyProgrammesViewModel model = new MyProgrammesViewModel();
+
+            model.UserName = User.Identity.Name;
+            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var channel = _context.Programmes
+               .FirstOrDefault(m => m.ProgrammeId == id);
+
+            model.MyProgrammes.Add(channel);
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+            }
+            var myprogrammes = _context.MyProgrammes
+            .Include(s => s.MyProgrammes);
+
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// Add Schedule to favorite list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IActionResult AddSchedule(int? id)
+        {
+            MySchedulesViewModel model = new MySchedulesViewModel();
+
+            model.UserName = User.Identity.Name;
+            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var channel = _context.Schedules
+               .FirstOrDefault(m => m.ProgrammeId == id);
+
+            model.MySchedules.Add(channel);
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+            }
+            var mySchedules = _context.MySchedules
+            .Include(s => s.MySchedules)
+            .Where(s => s.UserID == model.UserID);
+
+
+            return RedirectToAction("Index");
         }
 
 
 
-            public IActionResult Index()
+        public IActionResult Index()
             {
                 return View();
             }
