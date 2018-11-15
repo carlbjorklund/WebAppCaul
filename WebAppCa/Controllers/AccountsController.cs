@@ -14,11 +14,11 @@ using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {
-  public class AccountController : Controller
-        {
-            UserManager<IdentityUser> userManager;
-            SignInManager<IdentityUser> signInManager;
-            MyChannelViewModel myChannel;
+    public class AccountController : Controller
+    {
+        UserManager<IdentityUser> userManager;
+        SignInManager<IdentityUser> signInManager;
+        MyChannelViewModel myChannel;
 
 
 
@@ -28,9 +28,9 @@ namespace WebAppCa.Controllers
 
         public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager, BroadCastContext context)
         {
-                userManager = _userManager;
-                signInManager = _signInManager;
-               _context = context;
+            userManager = _userManager;
+            signInManager = _signInManager;
+            _context = context;
         }
 
         /// <summary>
@@ -39,20 +39,20 @@ namespace WebAppCa.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         /// 
-        [Authorize(Roles ="Admin,User")]
-        public IActionResult AddChannel(int ? id)
+        [Authorize(Roles = "Admin,User")]
+        public IActionResult AddChannel(int? id)
         {
             MyChannelViewModel model = new MyChannelViewModel();
 
             model.UserName = User.Identity.Name;
             model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
-        
-             var channel = _context.Channels
-                .FirstOrDefault(m => m.ChannelId == id);
+
+
+            var channel = _context.Channels
+               .FirstOrDefault(m => m.ChannelId == id);
 
             model.MyChannels.Add(channel);
-                             
+
             if (ModelState.IsValid)
             {
                 _context.Add(model);
@@ -140,7 +140,7 @@ namespace WebAppCa.Controllers
           .Include(s => s.MySchedules)
           .Where(s => s.UserID == model.UserID);
 
-           return View(mySchedules);
+            return View(mySchedules);
         }
 
         [Authorize(Roles = "Admin,User,Editor")]
@@ -152,69 +152,47 @@ namespace WebAppCa.Controllers
             var myChannels = _context.MyChannelViewModel
            .Include(s => s.MyChannels)
            .Where(s => s.UserID == model.UserID);
-        
+
             return View(myChannels);
         }
 
 
         [Authorize(Roles = "Admin,User,Editor")]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            IdentityUser user = new IdentityUser()
             {
-                return View();
-            }
+                UserName = model.UserName,
+                Email = model.Email
+            };
 
-            [HttpGet]
-            public IActionResult Register()
-            {
-                return View();
-            }
+            var result = await userManager.CreateAsync(user, model.Password);
+            string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, protocol: HttpContext.Request.Scheme);
+            //System.IO.File.WriteAllText(@"D:\Confirmations\ConfirmEmail.txt", confirmationLink);
 
-
-            [HttpPost]
-            public async Task<IActionResult> Register(RegisterViewModel model)
-            {
-                IdentityUser user = new IdentityUser()
-                {
-                    UserName = model.UserName,
-                    Email = model.Email
-                };
-
-                var result = await userManager.CreateAsync(user, model.Password);
-                string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, protocol: HttpContext.Request.Scheme);
-                System.IO.File.WriteAllText(@"D:\Confirmations\ConfirmEmail.txt", confirmationLink);
-
-                //EmailService.Send(user.Email, "Awaiting email confirmation", "Please confirm your email " + confirmationLink);
+            EmailService.Send(user.Email, "Awaiting email confirmation", "Please confirm your email " + confirmationLink);
 
             if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "Account");
-                }
-
-                return View();
-            }
-
-            [HttpGet]
-            public IActionResult Login()
             {
-                return View();
-            }
-
-            [HttpPost]
-            public async Task<IActionResult> Login(LoginViewModel model)
-            {
-                var Result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
-                if (Result.Succeeded)
-                    return RedirectToAction("Index", "Account");
-                return View();
-            }
-
-            [HttpPost]
-            public async Task<IActionResult> Logout()
-            {
-                await signInManager.SignOutAsync();
                 return RedirectToAction("Login", "Account");
             }
+
+            return View();
+        }
 
         [HttpGet]
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
@@ -223,14 +201,37 @@ namespace WebAppCa.Controllers
             var result = await userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                ViewBag.Msg = "Email confirmation Succeeded!";
+                ViewBag.Msg = "Email confimation Succeeded!";
             }
             else
             {
-                ViewBag.Msg = "Email confirmation Failed!";
+                ViewBag.Msg = "Email confimation Failed!";
             }
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            var Result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
+            if (Result.Succeeded)
+                return RedirectToAction("Index", "Account");
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
     }
+
  }
