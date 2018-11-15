@@ -54,7 +54,13 @@
                             Length: @Html.DisplayFor(modelItem => item.Programme.Length) minutes <br />
                         </p>
                         <a href="@Url.Action("Index", "Programmes")" class="btn btn-primary">Go to programmes</a>
-                        <a asp-action="Details" asp-route-id="@item.ScheduleId">Details</a> //test
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            <a asp-action="AddSchedule" asp-controller="Account" asp-route-id="@item.ScheduleId" class="btn btn-warning">Add to My Schedules</a>
+
+                        }
+                        <a asp-action="Details" asp-route-id="@item.ScheduleId" class="btn btn-danger">Details</a> 
                     </div>
                 </div>
             </div>

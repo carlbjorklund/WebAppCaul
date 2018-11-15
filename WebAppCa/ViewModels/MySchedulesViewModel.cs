@@ -15,7 +15,7 @@ namespace WebAppCa.ViewModels
         public string UserID { get; set; }
         public List<Schedule> MySchedules { get; set; }
 
-
+    
         public MySchedulesViewModel()
         {
             MySchedules = new List<Schedule>();

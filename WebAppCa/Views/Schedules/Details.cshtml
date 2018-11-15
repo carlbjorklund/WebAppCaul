@@ -4,9 +4,18 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Details</strong> </p>
+        </div>
+    </div>
 
-<div>
+</section>
+
+
+<div class="container">
     <h4>Schedule</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -45,18 +54,19 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Channel.ChannelId)
-            @Html.DisplayFor(model => model.Channel.Name) ///test
+            @Html.DisplayFor(model => model.Channel.Name) 
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Programme)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Programme.ProgrammeId)
-            @Html.DisplayFor(model => model.Programme.Title)///test
+            @Html.DisplayFor(model => model.Programme.Title)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ScheduleId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.ScheduleId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
 </div>

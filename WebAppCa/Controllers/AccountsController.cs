@@ -20,9 +20,7 @@ namespace WebAppCa.Controllers
         SignInManager<IdentityUser> signInManager;
         MyChannelViewModel myChannel;
 
-
-
-
+               
         private readonly BroadCastContext _context;
 
 
@@ -113,7 +111,9 @@ namespace WebAppCa.Controllers
 
 
             var channel = _context.Schedules
-               .FirstOrDefault(m => m.ProgrammeId == id);
+               .Include(s=>s.Programme)
+               .Include(s=>s.Channel)
+               .FirstOrDefault(m => m.ScheduleId == id);
 
             model.MySchedules.Add(channel);
 
@@ -122,9 +122,9 @@ namespace WebAppCa.Controllers
                 _context.Add(model);
                 _context.SaveChanges();
             }
-            var mySchedules = _context.MySchedules
-            .Include(s => s.MySchedules)
-            .Where(s => s.UserID == model.UserID);
+            //var mySchedules = _context.MySchedules
+            //.Include(s => s.MySchedules)
+            //.Where(s => s.UserID == model.UserID);
 
 
             return RedirectToAction("Index");
@@ -137,8 +137,12 @@ namespace WebAppCa.Controllers
             model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var mySchedules = _context.MySchedules
-          .Include(s => s.MySchedules)
-          .Where(s => s.UserID == model.UserID);
+            .Include(s=>s.MySchedules)
+          
+
+            .Where(s => s.UserID == model.UserID );
+
+            //////model.MySchedules(mySchedules);
 
             return View(mySchedules);
         }

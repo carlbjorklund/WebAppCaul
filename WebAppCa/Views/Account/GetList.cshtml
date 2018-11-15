@@ -1,49 +1,46 @@
 ﻿@model IEnumerable<WebAppCa.ViewModels.MySchedulesViewModel>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetList</title>
-</head>
+
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserID)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MyScheduleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MyScheduleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MyScheduleId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+    <section class="v1">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-1">ULCA </h1>
+                <p class="lead">Your Schedules.</p>
+            </div>
+        </div>
+
+    </section>
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+
+
+
+            @foreach (var schedule in item.MySchedules)
+            {
+                <p> Air Date: @schedule.AirDate  </p>
+                <p> Start time: @schedule.StartTime </p>
+                <p> End time: @schedule.EndTime </p>
+                <br />
+                <a asp-action="Details" asp-route-id="@schedule.ChannelId" asp-controller="Channels"> <p> Go to Channel : @schedule.ChannelId </p> </a>
+                <a asp-action="Details" asp-route-id="@schedule.ScheduleId" asp-controller="Schedules"> <p> Go to Schedules : @schedule.ScheduleId </p> </a>
+                <a asp-action="Details" asp-route-id="@schedule.ProgrammeId" asp-controller="Programmes"> <p> Go to Programme : @schedule.ProgrammeId </p> </a>
+                <hr />
+
+            }
+        }
+
+    </div>
+
 </body>
 </html>

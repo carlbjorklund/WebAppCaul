@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<WebAppCa.ViewModels.MyChannelViewModel>
+
+@{
     ViewData["Title"] = "Index";
 }
 
@@ -16,18 +18,17 @@
 
 
 <div>
-    <div class="container"> <h1>My favorites</h1>
+    <div class="container">
+        <h1>My favorites</h1>
         <div class="row">
-            
+
             <div class="text-center col-sm-4 bg-success">
                 <p>
                     <h2> My favorite channel</h2>
                 </p>
                 <ul class="list-unstyled">
-                    <li>Channel one </li>
-                    <li>Channel Two </li>
-                    <li>Channel three</li>
-                    <li>Manage Channels</li>
+                    <li > <a href="@Url.Action("GetChannelList", "Account")" class="btn btn-danger">Go to my channels</a> </li>
+                  
 
                 </ul>
             </div>
@@ -36,14 +37,12 @@
                     <h2> My favorite Programmes </h2>
                 </p>
                 <ul class="list-unstyled">
-                    <li>Programme one </li>
-                    <li> Programme Two </li>
-                    <li> Programme three</li>
-                    <li>Manage Schedules </li>
+                    <li> <a href="@Url.Action("GetList", "Account")" class="btn btn-danger">Go to my schedules</a> </li>
+                 
 
                 </ul>
             </div>
-            
+
             <div class="text-center col-sm-4 bg-success">
                 <p>
                     <h2> On Today </h2>
@@ -59,7 +58,7 @@
         </div>
     </div>
 
-   
+
 
 
 </div>

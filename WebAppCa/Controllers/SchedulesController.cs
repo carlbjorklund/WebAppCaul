@@ -102,6 +102,7 @@ namespace WebAppCa.Controllers
         }
 
         // GET: Schedules/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

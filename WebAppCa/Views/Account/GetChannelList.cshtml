@@ -1,56 +1,55 @@
 ﻿@model IEnumerable<WebAppCa.ViewModels.MyChannelViewModel>
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>GetChannelList</title>
-</head>
+
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserID)
-            </th>
 
-            <th>
-          
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
+    <section class="v1">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-1">ULCA </h1>
+                <p class="lead">It's about <strong>your</strong> <strong>channels</strong>. </p>
+            </div>
+        </div>
 
-            </td>
-            <td></td>
-            @foreach (var channel in item.MyChannels)
-            {
+    </section>
+
+
+    <div class="container">
+        <p>
+            My channels 
+        </p>
+        <table class="table">
+            <thead>
+      
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
               
-                @channel.Name; <br/>
-                @channel.Description; <br />
-            }
-        </tr>
-}
-    </tbody>
-</table>
+                    @foreach (var channel in item.MyChannels)
+                    {
+                        @channel.Name;
+                        <br />
+                        @channel.Description
+                        <br />
+                        <br />
+
+                    }
+
+                    @*</tr>*@
+                }
+
+            </tbody>
+
+
+        </table>
+    </div>
 </body>
 </html>
