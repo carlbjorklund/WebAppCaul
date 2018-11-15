@@ -1,0 +1,85 @@
+﻿@model IEnumerable<WebAppCa.Models.Schedule>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">ADM Schedules.</p>
+        </div>
+    </div>
+
+</section>
+
+<div class="container">
+    <h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AirDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sorting)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Channel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Programme)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AirDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sorting)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Channel.ChannelId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Programme.ProgrammeId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ScheduleId" class="btn btn-warning">Edit</a> 
+                        <a asp-action="Details" asp-route-id="@item.ScheduleId" class="btn btn-primary">Details</a> 
+                        <a asp-action="Delete" asp-route-id="@item.ScheduleId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </div>
