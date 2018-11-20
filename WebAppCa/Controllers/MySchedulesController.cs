@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ using WebAppCa.ViewModels;
 
 namespace WebAppCa.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class MySchedulesController : Controller
     {
         private readonly BroadCastContext _context;
@@ -48,6 +51,13 @@ namespace WebAppCa.Controllers
         // GET: MySchedules/Create
         public IActionResult Create()
         {
+            MySchedule mySchedule = new MySchedule();
+
+            mySchedule.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            mySchedule.UserName= User.Identity.Name;
+
+
+
             ViewData["ScheduleID"] = new SelectList(_context.Schedules, "ScheduleId", "ScheduleId");
             return View();
         }
@@ -59,6 +69,10 @@ namespace WebAppCa.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MyScheduleId,UserName,ScheduleID")] MySchedule mySchedule)
         {
+            mySchedule.UserName = User.Identity.Name;
+            mySchedule.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(mySchedule);
