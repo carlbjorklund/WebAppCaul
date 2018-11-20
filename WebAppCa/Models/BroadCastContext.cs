@@ -46,6 +46,7 @@ namespace WebAppCa.Models
         public DbSet<WebAppCa.ViewModels.ScheduleViewModel> ScheduleViewModel { get; set; }
         public DbSet<WebAppCa.ViewModels.MyStuffViewModel> MyStuffViewModel { get; set; }
         public DbSet<WebAppCa.ViewModels.UserStuff> UserStuff { get; set; }
+        public DbSet<WebAppCa.Models.News> News { get; set; }
 
 
     }
