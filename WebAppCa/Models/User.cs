@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Models
 {
@@ -11,11 +12,14 @@ namespace WebAppCa.Models
         private string Email { get; set; }
         private string UserName { get; set; }
         private string Password { get; set; }
+
         public List<Channel> MyChannels { get; set; }
 
         public List<Programme> MyProgrammes { get; set; }
 
-        public List<Schedule> MySchedules { get; set; }
+        
+        public List<MySchedule> MySchedules { get; set; }
+
         public static object Identity { get; internal set; }
         private int _userId;
 
@@ -25,7 +29,7 @@ namespace WebAppCa.Models
 
             MyChannels = new List<Channel>();
             MyProgrammes = new List<Programme>();
-            MySchedules = new List<Schedule>();
+            MySchedules = new List<MySchedule>();
         }
 
         public int UserId

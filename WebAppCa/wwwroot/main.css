@@ -42,7 +42,10 @@ p {
     color: white;
 }
 
-
+.list-unstyled align-content-center klein li {
+    width: 50%;
+    height: 50%;
+}
 
 .card{
     justify-content: center;

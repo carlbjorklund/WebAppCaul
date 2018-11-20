@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAppCa.ViewModels;
 
 namespace WebAppCa.Models
 {
@@ -31,6 +32,9 @@ namespace WebAppCa.Models
 
         public Channel Channel { get; set; }
         public Programme Programme { get; set; }
+
+  
+        public List<MySchedule> MySchedules {get; set; }
 
         public  int ChannelId { get; set; }
         public int ProgrammeId { get; set; }

@@ -60,6 +60,10 @@
     <Compile Remove="Migrations\20181111160514_InitRemoteDB1.Designer.cs" />
     <Compile Remove="Migrations\20181111160540_InitRemoteDB-force.cs" />
     <Compile Remove="Migrations\20181111160540_InitRemoteDB-force.Designer.cs" />
+    <Compile Remove="Migrations\20181120160035_DBUpdate1.cs" />
+    <Compile Remove="Migrations\20181120160035_DBUpdate1.Designer.cs" />
+    <Compile Remove="Migrations\20181120160914_DBUpdate2.cs" />
+    <Compile Remove="Migrations\20181120160914_DBUpdate2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,18 +7,21 @@ using WebAppCa.Models;
 
 namespace WebAppCa.ViewModels
 {
-    public class MySchedulesViewModel
+    public class MySchedule
     {
         [Key]
         public int MyScheduleId { get; set; }
         public string UserName { get; set; }
-        public string UserID { get; set; }
-        public List<Schedule> MySchedules { get; set; }
 
+        //public string UserID { get; set; }
+        public User User { get; set; }  
+        
+        public Schedule Schedule { get; set; }
+        public int ScheduleID { get; set; }
     
-        public MySchedulesViewModel()
+        public MySchedule()
         {
-            MySchedules = new List<Schedule>();
+    
         }
             
     }

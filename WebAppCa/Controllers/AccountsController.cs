@@ -19,8 +19,7 @@ namespace WebAppCa.Controllers
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         MyChannelViewModel myChannel;
-
-               
+    
         private readonly BroadCastContext _context;
 
 
@@ -95,6 +94,12 @@ namespace WebAppCa.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult AccessDenied()
+        {
+
+           return View();
+        }
+
         /// <summary>
         /// Add Schedule to favorite list
         /// </summary>
@@ -104,10 +109,10 @@ namespace WebAppCa.Controllers
         [Authorize(Roles = "Admin,User")]
         public IActionResult AddSchedule(int? id)
         {
-            MySchedulesViewModel model = new MySchedulesViewModel();
+           
 
-            model.UserName = User.Identity.Name;
-            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //model.UserName = User.Identity.Name;
+            //model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
             var channel = _context.Schedules
@@ -115,36 +120,10 @@ namespace WebAppCa.Controllers
                .Include(s=>s.Channel)
                .FirstOrDefault(m => m.ScheduleId == id);
 
-            model.MySchedules.Add(channel);
-
-            if (ModelState.IsValid)
-            {
-                _context.Add(model);
-                _context.SaveChanges();
-            }
-            //var mySchedules = _context.MySchedules
-            //.Include(s => s.MySchedules)
-            //.Where(s => s.UserID == model.UserID);
+      
 
 
             return RedirectToAction("Index");
-        }
-
-        [Authorize(Roles = "Admin,User,Editor")]
-        public IActionResult GetList()
-        {
-            MySchedulesViewModel model = new MySchedulesViewModel();
-            model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var mySchedules = _context.MySchedules
-            .Include(s=>s.MySchedules)
-          
-
-            .Where(s => s.UserID == model.UserID );
-
-            //////model.MySchedules(mySchedules);
-
-            return View(mySchedules);
         }
 
         [Authorize(Roles = "Admin,User,Editor")]

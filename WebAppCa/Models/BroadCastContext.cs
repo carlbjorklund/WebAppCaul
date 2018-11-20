@@ -33,14 +33,19 @@ namespace WebAppCa.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+           
         }
 
 
 
         public DbSet<WebAppCa.ViewModels.MyChannelViewModel> MyChannelViewModel { get; set; }
         public DbSet<WebAppCa.ViewModels.MyProgrammesViewModel> MyProgrammes { get; set; }
-        public DbSet<WebAppCa.ViewModels.MySchedulesViewModel> MySchedules { get; set; }
+        public DbSet<WebAppCa.ViewModels.MySchedule> MySchedules { get; set; }
         public DbSet<WebAppCa.ViewModels.ScheduleViewModel> ScheduleViewModel { get; set; }
+        public DbSet<WebAppCa.ViewModels.MyStuffViewModel> MyStuffViewModel { get; set; }
+        public DbSet<WebAppCa.ViewModels.UserStuff> UserStuff { get; set; }
 
 
     }

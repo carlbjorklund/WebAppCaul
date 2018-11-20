@@ -52,7 +52,7 @@
                     </td>
                     <td>
 
-                        @if (User.IsInRole("Admin, User"))
+                        @if (User.IsInRole("User"))
                         {
                             <a asp-action="AddChannel" asp-controller="Account" asp-route-id="@item.ChannelId" class="btn btn-primary">Add Channel</a>
 
