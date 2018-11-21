@@ -4,28 +4,40 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section class="v1">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Create</strong> </p>
+        </div>
+    </div>
 
-<h2>Details</h2>
+</section>
 
-<div>
-    <h4>MySchedule</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Schedule)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Schedule.ScheduleId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MyScheduleId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>MySchedule</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Schedule)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Schedule.ScheduleId)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.MyScheduleId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    </div>
