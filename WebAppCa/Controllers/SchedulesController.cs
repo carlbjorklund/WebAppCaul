@@ -40,6 +40,20 @@ namespace WebAppCa.Controllers
             return View(broadCastContext1);
         }
 
+        public ActionResult GetTodaysSchedule()
+        {
+            DateTime today = DateTime.Today;
+            var broadCastContext = _context.Schedules.
+                Include(s=>s.Programme).
+                Include(s=>s.Channel).
+                Where(s => s.AirDate == today).
+                ToList();
+            broadCastContext.ToList();
+
+            
+            return View(broadCastContext);
+        }
+
         public SchedulesController(BroadCastContext context)
         {
             _context = context;

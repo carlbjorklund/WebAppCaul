@@ -23,40 +23,36 @@
 
         <div class="block justify-content-center">
             <h3>ULCA Raw</h3>
-            
-           
-                <ul class="list-unstyled justify-content-center d-flex flex-row">
-                    <div class="card text-center" style="width: 18rem;">
-                        <p style="text-align:center;">
-                            <img class="card-img-top" src="images/nhl.jpg" alt="nhl image ">
-                        </p>
-                        <div class="card-body">
-                            <h5 class="card-title">NHL</h5>
-                            <p class="card-text">North american hockey league.</p>
-                            <a href="#" class="btn btn-warning">Read more</a>
-                        </div>
-                    </div>
 
-                    <div class="card text-center justify-content-center" style="width: 18rem;">
-                        <p style="text-align:center;">
-                            <img class="card-img-top" src="images/thevoicejpg.jpg" alt="Card image cap">
-                        </p>
-                        <div class="card-body">
-                            <h5 class="card-title">the voice </h5>
-                            <p class="card-text"> Has a voice of an angel..</p>
-                            <a href="#" class="btn btn-warning">Read more</a>
-                        </div>
+
+            <ul class="list-unstyled justify-content-center d-flex flex-row">
+                <div class="card text-center" style="width: 18rem;">
+                    <p style="text-align:center;">
+                        <img class="card-img-top" src="images/nhl.jpg" alt="nhl image ">
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title">NHL</h5>
+                        <p class="card-text">North american hockey league.</p>
+                        <a href="#" class="btn btn-warning">Read more</a>
                     </div>
-                </ul>
-           
+                </div>
+
+                <div class="card text-center justify-content-center" style="width: 18rem;">
+                    <p style="text-align:center;">
+                        <img class="card-img-top" src="images/thevoicejpg.jpg" alt="Card image cap">
+                    </p>
+                    <div class="card-body">
+                        <h5 class="card-title">the voice </h5>
+                        <p class="card-text"> Has a voice of an angel..</p>
+                        <a href="#" class="btn btn-warning">Read more</a>
+                    </div>
+                </div>
+            </ul>
+
         </div>
-        <ul class="list-unstyled">
-            <h4> Today's ULCA Raw Schedule </h4>
-            <li>19:00 NHL</li>
-            <li>20:00 Idol</li>
-            <li>21:00 Voice</li>
-            <li>22:00 Science and beyond </li>
-            <li>23:00 World War 2 </li>
-        </ul>
+
+        <partial name="_GetTodaysSchedule"  />
+        
+     
     </div>
 </div>

@@ -1,0 +1,22 @@
+﻿
+@model IEnumerable<WebAppCa.Models.Schedule>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+    @foreach (var item in Model)
+{
+
+    <div class="card align-content-center" style="width: 30em;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> @Html.DisplayFor(modelItem => item.Channel.Name)  </li>
+            <li class="list-group-item">@Html.DisplayFor(modelItem => item.AirDate) | @Html.DisplayFor(modelItem => item.Programme.Title) | @Html.DisplayFor(modelItem => item.StartTime)| @Html.DisplayFor(modelItem => item.EndTime)</li>
+            <div class="m-lg-4">
+                <p> <a asp-controller="Schedules" asp-action="Details" asp-route-id="@item.ScheduleId">Schedule Details</a> </p>
+                <p> <a asp-controller="Programmes" asp-action="Details" asp-route-id="@item.ProgrammeId">Programme Details</a> </p>
+            </div>
+        </ul>
+    </div>
+
+
+}

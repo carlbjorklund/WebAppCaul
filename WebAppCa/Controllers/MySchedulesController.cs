@@ -25,7 +25,7 @@ namespace WebAppCa.Controllers
         // GET: MySchedules
         public async Task<IActionResult> Index()
         {
-            var broadCastContext = _context.MySchedules.Include(m => m.Schedule);
+            var broadCastContext = _context.MySchedules.Include(m => m.Schedule).Include(m=>m.Schedule.Channel).Include(m=>m.Schedule.Programme);
             return View(await broadCastContext.ToListAsync());
         }
 

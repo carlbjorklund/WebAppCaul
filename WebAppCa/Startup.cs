@@ -27,7 +27,6 @@ namespace WebAppCa
         public void ConfigureServices(IServiceCollection services)
         {
 
-            
             //for server on azure
 
             services.AddDbContext<BroadCastContext>

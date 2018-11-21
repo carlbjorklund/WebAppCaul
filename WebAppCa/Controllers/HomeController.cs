@@ -4,15 +4,30 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebAppCa.Models;
 
 namespace WebAppCa.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly BroadCastContext _context;
+
+        public HomeController(BroadCastContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            return View();
+            DateTime today = DateTime.Today;
+            var broadCastContext = _context.Schedules.
+                Include(s => s.Programme).
+                Include(s => s.Channel).
+                Where(s => s.AirDate == today).
+                ToList();
+            broadCastContext.ToList();
+
+            return View(broadCastContext);
         }
 
         public IActionResult About()
@@ -21,6 +36,9 @@ namespace WebAppCa.Controllers
 
             return View();
         }
+
+    
+
 
         public IActionResult Contact()
         {

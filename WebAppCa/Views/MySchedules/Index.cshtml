@@ -37,19 +37,24 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Schedule.ScheduleId)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.MyScheduleId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MyScheduleId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MyScheduleId">Delete</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Schedule.ScheduleId)
+                </td>
+                <td>
+                   Programme Title:  @Html.DisplayFor(modelItem => item.Schedule.Programme.Title) |
+                   Channel Name:  @Html.DisplayFor(modelItem => item.Schedule.Channel.Name) |
+                   Air Date:  @Html.DisplayFor(modelItem => item.Schedule.AirDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MyScheduleId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.MyScheduleId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MyScheduleId">Delete</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

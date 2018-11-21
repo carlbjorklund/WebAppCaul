@@ -107,21 +107,20 @@ namespace WebAppCa.Controllers
         /// <returns></returns>
         /// 
         [Authorize(Roles = "Admin,User")]
-        public IActionResult AddSchedule(int? id)
+        public IActionResult AddSchedule(int id)
         {
-           
+            MySchedule mySchedule = new MySchedule();
+            mySchedule.ScheduleID = id;
+            mySchedule.UserName = User.Identity.Name;
+            mySchedule.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            //model.UserName = User.Identity.Name;
-            //model.UserID = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-
-            var channel = _context.Schedules
-               .Include(s=>s.Programme)
-               .Include(s=>s.Channel)
-               .FirstOrDefault(m => m.ScheduleId == id);
-
-      
-
+            if (ModelState.IsValid)
+            {
+                _context.Add(mySchedule);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
 
             return RedirectToAction("Index");
         }

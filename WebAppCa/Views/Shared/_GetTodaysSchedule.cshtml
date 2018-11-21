@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Mvc
+
+@model IEnumerable<WebAppCa.Models.Schedule>
+
+<div class="container align-content-center">
+
+@foreach (var item in Model)
+{
+
+    <div class="card card-header align-content-center" style="width: 30em;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item card-header"> @Html.DisplayFor(modelItem => item.Channel.Name)  </li>
+            <li class="list-group-item">
+                @Html.DisplayFor(modelItem => item.AirDate) | @Html.DisplayFor(modelItem => item.Programme.Title) | @Html.DisplayFor(modelItem => item.StartTime)| @Html.DisplayFor(modelItem => item.EndTime)
+
+                <p> <a asp-controller="Schedules" asp-action="Details" asp-route-id="@item.ScheduleId">Schedule Details</a> </p>
+                <p> <a asp-controller="Programmes" asp-action="Details" asp-route-id="@item.ProgrammeId">Programme Details</a> </p>
+            </li>
+          
+        </ul>
+    </div>
+
+
+}
+
+</div>
