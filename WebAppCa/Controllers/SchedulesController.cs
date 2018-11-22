@@ -131,8 +131,8 @@ namespace WebAppCa.Controllers
                 return NotFound();
             }
             ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name", schedule.ChannelId);//test
-            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId", schedule.ChannelId);//orginal
-            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId", schedule.ProgrammeId);
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name", schedule.ChannelId);//orginal
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "Title", schedule.ProgrammeId);
             return View(schedule);
         }
 
@@ -169,8 +169,8 @@ namespace WebAppCa.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId", schedule.ChannelId);
-            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId", schedule.ProgrammeId);
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "Name", "", schedule.ChannelId);
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "Title", "ProgrammeId", schedule.ProgrammeId);
             return View(schedule);
         }
 
