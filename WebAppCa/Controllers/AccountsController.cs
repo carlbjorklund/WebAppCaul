@@ -164,8 +164,7 @@ namespace WebAppCa.Controllers
             var result = await userManager.CreateAsync(user, model.Password);
             string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
             string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, protocol: HttpContext.Request.Scheme);
-            //System.IO.File.WriteAllText(@"D:\Confirmations\ConfirmEmail.txt", confirmationLink);
-
+            
             EmailService.Send(user.Email, "Awaiting email confirmation", "Please confirm your email " + confirmationLink);
 
             if (result.Succeeded)

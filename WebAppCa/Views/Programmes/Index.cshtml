@@ -53,8 +53,9 @@
                     <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
                     <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>
                     <p> Category: @Html.DisplayFor(modelItem => item.Category.Title)</p>
-                    <a asp-action="Details" asp-route-id="@item.ProgrammeId" class="btn btn-warning">Details</a>
-                    </div>
+                    <a asp-action="Details" asp-route-id="@item.ProgrammeId" class="btn btn-warning">Details</a> |
+                    <a asp-action="SearchProgramme" asp-controller="Programmes" asp-route-id="@item.ProgrammeId" class="btn btn-warning">Go to programme Schedule</a>
+                </div>
             </li>
         </ul>
 

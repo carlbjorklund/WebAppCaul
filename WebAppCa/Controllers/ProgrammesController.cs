@@ -14,6 +14,14 @@ namespace WebAppCa.Controllers
     public class ProgrammesController : Controller
     {
         private readonly BroadCastContext _context;
+      
+        public ActionResult SearchProgramme(int id)
+        {
+            var broadCastContext1 = _context.Schedules.Include(s => s.Channel).Include(s => s.Programme)
+               .Include(s => s.Programme.Category).Where(p => p.Programme.ProgrammeId == id);
+
+            return View(broadCastContext1);
+        }
 
         public ProgrammesController(BroadCastContext context)
         {

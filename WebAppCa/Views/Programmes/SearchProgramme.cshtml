@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WebAppCa.Models.Schedule>
+
+@{
+    ViewData["Title"] = "SearchProgramme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="v1">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-1">ULCA </h1>
+        <p class="lead">It's about <strong>Us</strong> and <strong>You</strong>. </p>
+    </div>
+</div>
+</section>
+
+<div class="container">
+
+    <h2>SearchProgramme</h2>
+
+    @foreach (var item in Model)
+    {
+        <div class="row align-content-sm-center">
+            <div class="col-sm-10  ">
+                <div class="card shadow p-3 ">
+                    <div class="card-body rounded-left">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Programme.Title) at: @Html.DisplayFor(modelItem => item.Channel.Name) </h5>
+                        <p class="card-text">
+                            About: @Html.DisplayFor(modelItem => item.Programme.Description) <br />
+                            Air Date: @Html.DisplayFor(modelItem => item.AirDate) <br /> Category: @Html.DisplayFor(modelItem => item.Programme.Category.Title) <br />
+                            Starts: @Html.DisplayFor(modelItem => item.StartTime) <br /> Ends : @Html.DisplayFor(modelItem => item.EndTime) <br />
+                            Length: @Html.DisplayFor(modelItem => item.Programme.Length) minutes <br />
+                            <a asp-action="Details" asp-controller="Programmes" asp-route-id="@item.ProgrammeId" class="btn btn-danger">Go to programme</a>
+                        </p>
+                      
+
+                        @if (User.IsInRole("Admin") || User.IsInRole("User"))
+                        {
+                            <a asp-action="AddSchedule" asp-controller="Account" asp-route-id="@item.ScheduleId" class="btn btn-warning">Add to My Schedules</a>
+
+                        }
+                     
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</div>

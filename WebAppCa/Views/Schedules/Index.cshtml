@@ -52,6 +52,7 @@
                             Air Date: @Html.DisplayFor(modelItem => item.AirDate) <br /> Category: @Html.DisplayFor(modelItem => item.Programme.Category.Title) <br />
                             Starts: @Html.DisplayFor(modelItem => item.StartTime) <br /> Ends : @Html.DisplayFor(modelItem => item.EndTime) <br />
                             Length: @Html.DisplayFor(modelItem => item.Programme.Length) minutes <br />
+                            <a asp-action="Details" asp-controller="Programmes" asp-route-id="@item.ProgrammeId" class="btn btn-warning">Go to programme</a>
                         </p>
                         <a href="@Url.Action("Index", "Programmes")" class="btn btn-primary">Go to programmes</a>
 
@@ -60,7 +61,7 @@
                             <a asp-action="AddSchedule" asp-controller="Account" asp-route-id="@item.ScheduleId" class="btn btn-warning">Add to My Schedules</a>
 
                         }
-                        <a asp-action="Details" asp-route-id="@item.ScheduleId" class="btn btn-danger">Details</a> 
+                        <a asp-action="Details" asp-route-id="@item.ScheduleId" class="btn btn-danger">Schedule Details</a> 
                     </div>
                 </div>
             </div>

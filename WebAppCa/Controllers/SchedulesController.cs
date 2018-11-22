@@ -15,6 +15,7 @@ namespace WebAppCa.Controllers
         private readonly BroadCastContext _context;
 
        
+
         public ActionResult Index(int? categoryId, int? channelId)
         {
             var categories = _context.Categories.OrderBy(q => q.Title).ToList();

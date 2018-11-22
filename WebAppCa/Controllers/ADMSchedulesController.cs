@@ -48,8 +48,8 @@ namespace WebAppCa.Controllers
         // GET: ADMSchedules/Create
         public IActionResult Create()
         {
-            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "ChannelId");
-            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "ProgrammeId");
+            ViewData["ChannelId"] = new SelectList(_context.Channels, "ChannelId", "Name");
+            ViewData["ProgrammeId"] = new SelectList(_context.Programmes, "ProgrammeId", "Title");
             return View();
         }
 

@@ -93,6 +93,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Programmes\SearchProgramme.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_GetTodaysSchedule.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
