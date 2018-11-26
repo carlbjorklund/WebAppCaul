@@ -48,7 +48,15 @@
 
         <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
             <li data-keywords="Sports News Hour" class="media my-8">
-                <img class="mr-3" src="~/images/media.svg" alt="Generic placeholder image">
+                @if (item.Image != "")
+                {
+                    <img class="logo" src="/Upploads/@item.ProgrammeId.ToString()/@item.Image">
+                }
+                else
+                {
+                    <img class="mr-3" src="/images/media.svg" alt="Generic placeholder image">
+
+                }
                 <div class="media-body">
                     <h5 class="mt-0 mb-1"> > @Html.DisplayFor(modelItem => item.Title)<</h5>
                     <p> Description: @Html.DisplayFor(modelItem => item.Description) </p>

@@ -64,6 +64,14 @@
     <Compile Remove="Migrations\20181120160035_DBUpdate1.Designer.cs" />
     <Compile Remove="Migrations\20181120160914_DBUpdate2.cs" />
     <Compile Remove="Migrations\20181120160914_DBUpdate2.Designer.cs" />
+    <Compile Remove="Migrations\20181120224937_databaseupdateNews.cs" />
+    <Compile Remove="Migrations\20181120224937_databaseupdateNews.Designer.cs" />
+    <Compile Remove="Migrations\20181125144822_newsdatabaseupdate101.cs" />
+    <Compile Remove="Migrations\20181125144822_newsdatabaseupdate101.Designer.cs" />
+    <Compile Remove="Migrations\20181126125901_dbupdate103.cs" />
+    <Compile Remove="Migrations\20181126125901_dbupdate103.Designer.cs" />
+    <Compile Remove="Migrations\20181126131332_dbupdate104.cs" />
+    <Compile Remove="Migrations\20181126131332_dbupdate104.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,6 +98,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\Uploads\" />
   </ItemGroup>
 
   <ItemGroup>

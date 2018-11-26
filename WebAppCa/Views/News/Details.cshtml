@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="v1">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
@@ -35,6 +36,12 @@
                 @Html.DisplayFor(model => model.Description)
             </dd>
             <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+            <dd>
+                <img class="logo2" src="/Upploads/@Model.NewsId.ToString()/@Model.Image" />
+            </dd>
+            <dt>
                 @Html.DisplayNameFor(model => model.IssueDate)
             </dt>
             <dd>
@@ -47,4 +54,4 @@
         <a asp-action="Index">Back to List</a>
     </div>
 
-    </div>
+</div>

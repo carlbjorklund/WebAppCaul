@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +17,12 @@ namespace WebAppCa.Controllers
     public class AdminProgrammesController : Controller
     {
         private readonly BroadCastContext _context;
+        private IHostingEnvironment _env;
 
-        public AdminProgrammesController(BroadCastContext context)
+        public AdminProgrammesController(BroadCastContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: AdminProgrammes
@@ -58,10 +63,29 @@ namespace WebAppCa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProgrammeId,Title,Description,Image,Length,CategoryId")] Programme programme)
+        public async Task<IActionResult> Create([Bind("ProgrammeId,Title,Description,Image,Length,CategoryId, ProgrammeImageFile")] Programme programme, IFormFile ProgrammeImageFile)
         {
             if (ModelState.IsValid)
             {
+                if (ProgrammeImageFile != null)
+                {
+                    string upploadPath = Path.Combine(_env.WebRootPath, "Upploads");
+                    Directory.CreateDirectory(Path.Combine(upploadPath, programme.ProgrammeId.ToString()));
+
+                    string filename = ProgrammeImageFile.FileName;
+
+                    if (filename.Contains("//"))
+                    {
+                        filename = filename.Split("\\").Last();
+                    }
+
+                    using (FileStream fs = new FileStream(Path.Combine(upploadPath, programme.ProgrammeId.ToString(), filename), FileMode.Create))
+                    {
+                        await ProgrammeImageFile.CopyToAsync(fs);
+                    }
+                    programme.Image = filename;
+                }
+           
                 _context.Add(programme);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -73,6 +97,7 @@ namespace WebAppCa.Controllers
         // GET: AdminProgrammes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+                                                         
             if (id == null)
             {
                 return NotFound();
@@ -92,36 +117,41 @@ namespace WebAppCa.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProgrammeId,Title,Description,Image,Length,CategoryId")] Programme programme)
+        public async Task<IActionResult> Edit([Bind("ProgrammeId,Title,Description,Image,Length,CategoryId, ProgrammeImageFile")] Programme programme, IFormFile ProgrammeImageFile)
         {
-            if (id != programme.ProgrammeId)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
-                try
+                if (ProgrammeImageFile != null)
                 {
-                    _context.Update(programme);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProgrammeExists(programme.ProgrammeId))
+                    string upploadPath = Path.Combine(_env.WebRootPath, "Upploads");
+                    Directory.CreateDirectory(Path.Combine(upploadPath, programme.ProgrammeId.ToString()));
+
+                    string filename = ProgrammeImageFile.FileName;
+
+                    if (filename.Contains("//"))
                     {
-                        return NotFound();
+                        filename = filename.Split("\\").Last();
                     }
-                    else
+
+                    using (FileStream fs = new FileStream(Path.Combine(upploadPath, programme.ProgrammeId.ToString(), filename), FileMode.Create))
                     {
-                        throw;
+                        await ProgrammeImageFile.CopyToAsync(fs);
                     }
+                    programme.Image = filename;
                 }
-                return RedirectToAction(nameof(Index));
+
+                        _context.Update(programme);
+                        await _context.SaveChangesAsync();
+         
+                    
+                    return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", programme.CategoryId);
-            return View(programme);
-        }
+                ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryId", programme.CategoryId);
+
+                return View(programme);
+            
+        } 
 
         // GET: AdminProgrammes/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -10,8 +10,8 @@ using WebAppCa.Models;
 namespace WebAppCa.Migrations
 {
     [DbContext(typeof(BroadCastContext))]
-    [Migration("20181120224937_databaseupdateNews")]
-    partial class databaseupdateNews
+    [Migration("20181126133620_dbupdate104")]
+    partial class dbupdate104
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,6 +229,8 @@ namespace WebAppCa.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Image");
 
                     b.Property<DateTime>("IssueDate");
 

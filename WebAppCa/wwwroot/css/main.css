@@ -118,6 +118,12 @@ p {
    
 }
 
+.logo2 {
+    width: 150px;
+    height:150px;
+    padding-bottom: 5%
+}
+
 .cop{
     background: #66A3D2;
     color: white;

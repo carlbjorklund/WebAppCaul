@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppCa.Migrations
 {
-    public partial class databaseupdateNews : Migration
+    public partial class dbupdate104 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,6 +16,7 @@ namespace WebAppCa.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
                     IssueDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

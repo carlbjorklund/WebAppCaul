@@ -4,19 +4,19 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
 <section class="v1">
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-1">ULCA </h1>
-        <p class="lead">It's about <strong>Create</strong> </p>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-1">ULCA </h1>
+            <p class="lead">It's about <strong>Create</strong> </p>
+        </div>
     </div>
-</div>
 
 </section>
 
 <div class="container">
-
-    <h2>Index</h2>
 
     <p>
         <a asp-action="Create">Create New</a>
@@ -29,6 +29,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.IssueDate)
@@ -47,6 +50,9 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
+                        <img class="logo" src="/Upploads/@item.NewsId.ToString()/@item.Image" />                      
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.IssueDate)
                     </td>
                     <td>
@@ -58,5 +64,4 @@
             }
         </tbody>
     </table>
-
-    </div>
+</div>

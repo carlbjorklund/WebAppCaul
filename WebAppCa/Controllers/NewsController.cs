@@ -1,20 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WebAppCa.Models;
 
-namespace WebAppCa.Models
+namespace WebAppCa.Controllers
 {
     public class NewsController : Controller
     {
         private readonly BroadCastContext _context;
+        private IHostingEnvironment _env;
 
-        public NewsController(BroadCastContext context)
+        public NewsController(BroadCastContext context, IHostingEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         // GET: News
@@ -52,10 +58,30 @@ namespace WebAppCa.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NewsId,Title,Description,IssueDate")] News news)
+        public async Task<IActionResult> Create([Bind("NewsId,Title,Description,Image,IssueDate, NewsImageFile")] News news, IFormFile NewsImageFile)
         {
             if (ModelState.IsValid)
             {
+                if (NewsImageFile!=null)
+            {
+                string upploadPath = Path.Combine(_env.WebRootPath, "Upploads");
+                Directory.CreateDirectory(Path.Combine(upploadPath, news.NewsId.ToString()));
+
+                string filename = NewsImageFile.FileName;
+
+                    if (filename.Contains("//"))
+                    {
+                        filename = filename.Split("\\").Last();
+                    }
+
+                    using (FileStream fs = new FileStream(Path.Combine(upploadPath, news.NewsId.ToString(), filename), FileMode.Create))
+                    {
+                        await NewsImageFile.CopyToAsync(fs);
+                    }
+                    news.Image = filename;
+            }
+
+           
                 _context.Add(news);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -64,14 +90,9 @@ namespace WebAppCa.Models
         }
 
         // GET: News/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit( int?Id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var news = await _context.News.FindAsync(id);
+            var news = await _context.News.FindAsync(Id);
             if (news == null)
             {
                 return NotFound();
@@ -84,32 +105,34 @@ namespace WebAppCa.Models
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NewsId,Title,Description,IssueDate")] News news)
+        public async Task<IActionResult> Edit([Bind("NewsId,Title,Description,Image,IssueDate")] News news, IFormFile NewsImageFile)
         {
-            if (id != news.NewsId)
-            {
-                return NotFound();
-            }
+           
 
             if (ModelState.IsValid)
             {
-                try
+                if (NewsImageFile != null)
                 {
-                    _context.Update(news);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!NewsExists(news.NewsId))
+                    string upploadPath = Path.Combine(_env.WebRootPath, "Upploads");
+                    Directory.CreateDirectory(Path.Combine(upploadPath, news.NewsId.ToString()));
+
+                    string filename = NewsImageFile.FileName;
+
+                    if (filename.Contains("//"))
                     {
-                        return NotFound();
+                        filename = filename.Split("\\").Last();
                     }
-                    else
+
+                    using (FileStream fs = new FileStream(Path.Combine(upploadPath, news.NewsId.ToString(), filename), FileMode.Create))
                     {
-                        throw;
+                        await NewsImageFile.CopyToAsync(fs);
                     }
+                    news.Image = filename;
                 }
-                return RedirectToAction(nameof(Index));
+
+
+                _context.Update(news);
+                await _context.SaveChangesAsync();
             }
             return View(news);
         }

@@ -22,7 +22,7 @@
     <hr />
     <div class="row">
         <div class="col-md-4">
-            <form asp-action="Edit">
+            <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="ProgrammeId" />
                 <div class="form-group">
@@ -36,10 +36,14 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                     <img class="logo2" src="/Upploads/@Model.ProgrammeId.ToString()/@Model.Image" />
+                 </div>
+                <div class="form-group">
                     <label asp-for="Image" class="control-label"></label>
-                    <input asp-for="Image" class="form-control" />
+                    <input type="file" name="ProgrammeImageFile" />
                     <span asp-validation-for="Image" class="text-danger"></span>
                 </div>
+
                 <div class="form-group">
                     <label asp-for="Length" class="control-label"></label>
                     <input asp-for="Length" class="form-control" />

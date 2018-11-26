@@ -228,6 +228,8 @@ namespace WebAppCa.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Image");
+
                     b.Property<DateTime>("IssueDate");
 
                     b.Property<string>("Title");

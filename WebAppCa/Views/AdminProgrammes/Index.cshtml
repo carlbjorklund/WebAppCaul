@@ -50,7 +50,7 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Image)
+                        <img class="logo" src="/Upploads/@item.ProgrammeId.ToString()/@item.Image" />    
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Length)

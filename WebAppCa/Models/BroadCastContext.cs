@@ -27,7 +27,7 @@ namespace WebAppCa.Models
         public DbSet<Programme> Programmes { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<User> User { get; set; }
-      
+        public DbSet<WebAppCa.Models.News> News { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace WebAppCa.Models
         public DbSet<WebAppCa.ViewModels.ScheduleViewModel> ScheduleViewModel { get; set; }
         public DbSet<WebAppCa.ViewModels.MyStuffViewModel> MyStuffViewModel { get; set; }
         public DbSet<WebAppCa.ViewModels.UserStuff> UserStuff { get; set; }
-        public DbSet<WebAppCa.Models.News> News { get; set; }
+        
 
 
     }

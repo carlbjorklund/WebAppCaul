@@ -18,7 +18,7 @@ namespace WebAppCa.Controllers
     {
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
-        MyChannelViewModel myChannel;
+
     
         private readonly BroadCastContext _context;
 

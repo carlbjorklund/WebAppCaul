@@ -25,21 +25,21 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <hr/>
+        <hr />
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        
-        <hr/>
-        @*<dt>
+
+        <hr />
+        <dt>
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>*@
+            <img class="logo2" src="/Upploads/@Model.ProgrammeId.ToString()/@Model.Image">
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Length)
         </dt>
@@ -56,7 +56,7 @@
         <dd>
             @Html.DisplayFor(model => model.Category.Title)
         </dd>
-        
+
         <div>
             @*<a asp-action="Edit" asp-route-id="@Model.ProgrammeId">Edit</a> |*@
             <a asp-action="Index">Back to List</a>
@@ -64,7 +64,7 @@
         @*<dd>
             @Html.DisplayFor(model => model.Category.CategoryId)
         </dd>*@
-       
+
     </dl>
 </div>
 
