@@ -7,8 +7,8 @@
 @foreach (var item in Model)
 {
 
-    <div class="card card-header align-content-center" style="width: 30em;">
-        <ul class="list-group list-group-flush">
+    <div class="card card-header " style="width: 30em;">
+        <ul class="list-group list-group-flush rounded">
             <li class="list-group-item card-header"> @Html.DisplayFor(modelItem => item.Channel.Name)  </li>
             <li class="list-group-item">
                 @Html.DisplayFor(modelItem => item.AirDate) | @Html.DisplayFor(modelItem => item.Programme.Title) | @Html.DisplayFor(modelItem => item.StartTime)| @Html.DisplayFor(modelItem => item.EndTime)

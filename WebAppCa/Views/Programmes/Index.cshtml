@@ -26,7 +26,7 @@
     </div>
 </section>
 
-<div class="container">
+<div class="container .mx-auto display:inline">
 
 
     @using (Html.BeginForm("Index", "Programmes", FormMethod.Get))
@@ -46,11 +46,11 @@
     @foreach (var item in Model)
     {
 
-        <ul id="showlist" class="list-unstyled mx-auto justify-content-center test">
-            <li data-keywords="Sports News Hour" class="media my-8">
+        <ul id="showlist" class="list-unstyled mx-auto">
+            <li class="media my-8">
                 @if (item.Image != "")
                 {
-                    <img class="logo" src="/Upploads/@item.ProgrammeId.ToString()/@item.Image">
+                    <img class="Details" src="/Upploads/@item.ProgrammeId.ToString()/@item.Image">
                 }
                 else
                 {

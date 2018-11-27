@@ -1,0 +1,23 @@
+﻿@model IEnumerable<WebAppCa.Models.News>
+
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <h2></h2>
+        <p></p>
+        <div class="card" style="width:400px">
+            <img class="card-img-top" src="/Upploads/@item.NewsId.ToString()/@item.Image" alt="Card image" style="width:100%" />
+            <div class="card-body">
+
+                <h4 class="card-title"> @item.Title </h4>
+                <p class="card-text">@item.Description</p>
+                <p class="card-text">@item.IssueDate</p>
+                <a href="#" class="btn btn-primary"></a>
+            </div>
+        </div>
+        <br>
+
+
+    </div>
+}

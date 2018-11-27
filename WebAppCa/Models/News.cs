@@ -17,5 +17,6 @@ namespace WebAppCa.Models
         public string Image { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime IssueDate { get; set;  }
-    }
+
+     }
 }

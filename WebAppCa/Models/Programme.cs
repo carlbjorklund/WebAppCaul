@@ -15,8 +15,7 @@ namespace WebAppCa.Models
         public string Image { get; set; }
         public int Length { get; set; }
        
-
-     
+            
 
         public Category Category { get; set; }
         public int? CategoryId { get; set; }

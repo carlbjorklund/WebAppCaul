@@ -12,7 +12,7 @@ namespace WebAppCa.Controllers
     public class HomeController : Controller
     {
         private readonly BroadCastContext _context;
-
+       
         public HomeController(BroadCastContext context)
         {
             _context = context;

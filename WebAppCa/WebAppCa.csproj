@@ -108,6 +108,9 @@
     <Content Update="Views\Shared\_GetTodaysSchedule.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\Shared\_NewsSetDisplay.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
 </Project>
