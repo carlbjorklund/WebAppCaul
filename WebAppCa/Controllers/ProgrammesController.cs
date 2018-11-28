@@ -28,19 +28,7 @@ namespace WebAppCa.Controllers
             _context = context;
         }
 
-        //GET: Programmes
-       
-        /// <summary>
-        /// funkar
-        /// </summary>
-        /// <returns></returns>
-        //public async Task<IActionResult> Index()
-        //{
-
-
-        //    var broadCastContext = _context.Programmes.Include(p => p.Category);
-        //    return View(await broadCastContext.ToListAsync());
-        //}
+  
 
         public async Task<IActionResult> Index(int? CategoryId)
         {
@@ -61,7 +49,7 @@ namespace WebAppCa.Controllers
         /// <returns></returns>
         public ActionResult GetCategories(int? CategoryId)
         {
-            //ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Title");
+         
             var categories = _context.Categories.OrderBy(q => q.Title).ToList();
             ViewData["CategoryId"] = new SelectList(categories, "CategoryId", "Title", CategoryId);
             int categoryId = CategoryId.GetValueOrDefault();

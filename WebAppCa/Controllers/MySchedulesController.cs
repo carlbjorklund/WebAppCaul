@@ -29,7 +29,7 @@ namespace WebAppCa.Controllers
 
             mySchedule.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var broadCastContext = _context.MySchedules.Include(m => m.Schedule).Include(m => m.Schedule.Channel).Include(m => m.Schedule.Programme).Where(m=>m.UserId==mySchedule.UserId);
-            //var broadCastContext = _context.MySchedules.Include(m => m.Schedule).Include(m=>m.Schedule.Channel).Include(m=>m.Schedule.Programme);
+     
             return View(await broadCastContext.ToListAsync());
         }
 
